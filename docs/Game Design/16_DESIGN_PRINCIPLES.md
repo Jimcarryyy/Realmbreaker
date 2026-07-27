@@ -1,33 +1,20 @@
 # ⚖️ Design Principles
 
-Every feature added to Realmbreaker must be filtered through these principles to ensure consistency and quality.
-
 ## 1. The "Why" Rule
-Before implementing a feature, we must answer:
-> "Why would this make the player want to continue playing?"
-If the answer is only "to get more XP," the feature is rejected. It must contribute to **Long-term Progression, Replayability, Competition, or Social Interaction.**
+Every feature must contribute to **Long-term Progression, Replayability, Competition, or Social Interaction.**
 
 ## 2. Skill > Stats
-While progression is vital, raw stats should never be an "I-Win" button. 
-*   **Active Defense:** Parries, dodges, and blocks are core.
-*   **Counter-play:** Every skill must have a tell or a weakness that a skilled opponent can exploit.
+Raw stats never guarantee victory. This applies to crafting too—high-tier refining requires mini-game precision and rare knowledge, not just clicking a "Craft" button.
 
 ## 3. Depth over Complexity
-We avoid "bloat." Instead of 100 near-identical skills, we provide 10 skills with deep customization and mastery. 
-*   **Easy to Learn:** Intuitive UI and controls.
-*   **Hard to Master:** High ceiling for combo-stringing and resource management.
+We avoid "bloat." Instead of 1,000 useless items, we have a refined list of impactful Artifacts, Pills, and Talismans that fundamentally change how a player fights or cultivates.
 
-## 4. Connected Systems
-No system should exist in a vacuum.
-*   *Example:* Crafting an artifact should require a resource found only in a PvP territory, which is protected by a Sect, which requires a specific Cultivation Realm to enter.
+## 4. Connected Systems (The "Web")
+No system exists in a vacuum. 
+*   *Example:* A **Blacksmith** needs ores from a dangerous cave. A **Talisman Master** provides a "Stealth Talisman" to help a **Gatherer** sneak past the boss to get the ore. The **Alchemist** creates the "Qi Condensing Pill" the Blacksmith needs to maintain the heat required for a legendary forge.
 
-## 5. Performance First
-As a technical standard, we optimize from Day 1.
-*   **Modular Architecture:** Use ModuleScripts and a Service/Controller pattern.
-*   **Data-Driven:** Keep configurations in tables; avoid hard-coding values.
-*   **Client-Side Prediction:** Ensure combat feels snappy regardless of ping.
+## 5. Professional Specialization
+A player cannot be a master of everything. True mastery in a profession (Alchemy, Forging, etc.) requires significant investment, making "Master Crafters" famous and valuable within the community.
 
-## 6. Meaningful Breakthroughs
-Reaching a new Realm must be a "Gamer Moment."
-*   **Phase Shift:** If Qi Condensation is "Grounded Combat," Foundation Establishment should introduce "Verticality/Air Combat."
-*   **World Access:** High-level areas should physically push back low-level players via "Qi Pressure."
+## 6. Performance First
+Modular architecture ensures that complex crafting UI and world-resource spawning do not degrade server performance.

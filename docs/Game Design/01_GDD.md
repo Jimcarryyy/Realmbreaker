@@ -1,40 +1,33 @@
 # 📖 Game Design Document (GDD)
 
 ## 🔄 Core Gameplay Loop
-1.  **Cultivate:** Absorb Qi through meditation, quests, or rare treasures.
-2.  **Breakthrough:** Complete a "Tribulation" or challenge to unlock the next Realm.
-3.  **Explore/Compete:** Use new mechanical unlocks (e.g., Water Walking, Teleportation) to access new zones and resources.
-4.  **Social/Warfare:** Join a Sect, participate in wars, and defend territory.
+1.  **Gather & Cultivate:** Collect rare resources from the world while increasing your Qi.
+2.  **Refine & Forge:** Use Professions (Alchemy, Blacksmithing) to turn raw materials into powerful consumables and gear.
+3.  **Breakthrough:** Use high-tier pills and artifacts to survive the Tribulations of advancing to the next Realm.
+4.  **Conquer:** Use your strength and gear to seize "Spirit Veins" (Resource nodes) for your Sect.
 
 ## ⚔️ Combat System
-*   **Action-Based:** No tab-targeting. M1/M2 combos with skill hotkeys.
-*   **Defensive Layers:** 
-    *   *Block:* Reduces incoming damage.
-    *   *Perfect Parry:* Stuns the attacker and restores stamina.
-    *   *Dash/Dodge:* I-frame based movement.
-*   **Status Effects:** Burn, Freeze, Qi-Block, Suppression.
+*   **Action-Based:** M1/M2 combos, Parries, and Dodges.
+*   **Tactical Consumables:** Talismans and Pills add a layer of strategy (e.g., temporary speed boosts, elemental resistance, or instant Qi recovery).
 
-## 🧘 Cultivation & Progression
+## 🛠️ Progression & Professions
 Players progress through several parallel systems:
 | System | Impact |
 | :--- | :--- |
 | **Major Realm** | Unlocks new mechanics (Flight, Perception, Map Access). |
-| **Body Cultivation** | Passives: Defense, Stamina, and Physical Strength. |
-| **Bloodlines** | Unique innate abilities and transformation modes. |
+| **Professions** | Ability to create high-tier Artifacts, Pills, and Formations. |
 | **Dao Path** | Elemental specializations (Fire, Sword, Karma, etc.). |
 
+### 🧪 The Four Great Arts (Professions)
+1.  **Alchemy:** Creating pills for breakthroughs, healing, and temporary stat surges.
+2.  **Blacksmithing:** Forging and soul-binding artifacts/weapons that evolve with the player.
+3.  **Talisman Making:** Crafting single-use items for utility (Teleportation, Invisibility, Traps).
+4.  **Formation Mastery:** Setting up world-space zones that buff allies or debuff enemies (Crucial for Sect Wars).
+
 ## 🗺️ World Design
-*   **The Mortal Plane:** The starting open-world continent.
-*   **Secret Realms:** Instanced dungeons with unique environmental mechanics.
-*   **Sect Territories:** Player-controllable zones with tax and resource benefits.
+*   **Spirit Veins:** High-value areas where rare materials spawn. These are the primary points of conflict for PvP.
+*   **Sect Territories:** Guilds can build "Refinement Halls" to boost the success rate of their crafters.
 
-## 🛠️ Technical Stack (The Realmbreaker Framework)
-*   **Architecture:** Custom Modular Framework (Shared/Server/Client).
-*   **Networking:** BridgeNet2 or custom Bit-buffer for high-frequency combat data.
-*   **State Management:** Strict State-Machine for players (Idle, Attacking, Stunned, Knockdown).
-*   **Data:** ProfileService for robust, transaction-based player saving.
-
-## 📈 Monetization Philosophy (Fairness)
-*   **No P2W:** You cannot buy a "Power Level." 
-*   **Convenience & Cosmetics:** Skins, VIP titles, faster (but not instant) Qi gathering, and storage.
-*   **Economy:** Player-driven marketplace for rare materials and manuals.
+## 📈 Monetization Philosophy
+*   **Economy Integrity:** We do not sell crafting materials for Robux. Materials must be earned through gameplay to keep the player-driven economy healthy.
+*   **Cosmetics:** Unique "Auras" for master crafters and specialized skins for tools/artifacts.

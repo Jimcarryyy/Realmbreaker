@@ -1,23 +1,18 @@
 # 🆔 Game Identity: Realmbreaker
 
 ## 📜 The Vision
-**Realmbreaker** is a high-fidelity Cultivation (Xianxia/Wuxia) MMORPG on Roblox that bridges the gap between deep progression and skill-based action. Unlike traditional cultivation simulators that focus on idling and "number-go-up" loops, Realmbreaker focuses on **mechanical evolution**. Every stage of a player's journey fundamentally changes how they interact with the world.
+**Realmbreaker** is a high-fidelity Cultivation (Xianxia/Wuxia) MMORPG on Roblox that bridges the gap between deep progression and skill-based action. Unlike traditional cultivation simulators, Realmbreaker focuses on **mechanical evolution** and **world inter-dependence**.
 
 ## 🎯 The Elevator Pitch
-"In Realmbreaker, you don't just cultivate to deal more damage; you cultivate to break the laws of the world. From your first breath of Qi to the shattering of the Heavens, every breakthrough grants new abilities—flight, soul-projection, or world-altering techniques—within a skill-based, anime-inspired combat system."
+"In Realmbreaker, you don't just cultivate to deal more damage; you cultivate to break the laws of the world. Whether through mastering the blade, refining the perfect pill, or forging world-shattering artifacts, your path to immortality is defined by your mastery over the world's resources and your own skill."
 
 ## 💎 Core Pillars
-1. **Mechanical Progression:** Cultivation isn't a stat stick. It is an unlock key for new gameplay systems (Flight, Perception, Territory Control).
-2. **Skill-Expression:** Combat rewards timing, positioning, and parrying over raw power. A lower-realm player with high skill should always be a threat.
-3. **Living World:** A world that reacts to player choices, sect wars, and world-shattering events.
-4. **Social Hierarchy:** Sects aren't just clans; they are political entities that fight for resources and territory.
+1. **Mechanical Progression:** Cultivation isn't a stat stick. It unlocks new gameplay systems (Flight, Perception, Territory Control).
+2. **Skill-Expression:** Combat rewards timing and positioning. A master of a craft can be just as influential as a master of combat.
+3. **Economic Ecosystem:** A player-driven economy where Alchemists, Blacksmiths, and Talisman Masters provide the essential tools for survival and breakthrough.
+4. **Social Hierarchy:** Sects aren't just clans; they are political and industrial entities that fight for control over resource-rich spirit veins.
 
 ## 🎨 Aesthetic & Atmosphere
 *   **Visual Style:** Stylized Anime/Cell-shaded with high-quality VFX.
-*   **Theme:** "Transcendence through struggle." The world should feel ancient, mystical, and dangerous.
-*   **Tone:** Serious, competitive, yet rewarding of exploration and curiosity.
-
-## 👥 Target Audience
-*   Fans of Xianxia/Wuxia literature (Cradle, Mo Dao Zu Shi, etc.).
-*   Players looking for competitive PvP with actual depth (Soulslike/Fighting game mechanics).
-*   MMO enthusiasts who enjoy complex progression and social systems.
+*   **Theme:** "Transcendence through struggle and mastery." 
+*   **Tone:** Serious, competitive, and industrially deep.
