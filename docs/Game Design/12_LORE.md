@@ -23,3 +23,15 @@ Legendary artifacts
 The ultimate purpose of cultivation
 
 Future lore additions should support gameplay first and storytelling second.
+
+History of Alchemy
+
+Legendary Alchemists
+
+Ancient Pill Sects
+
+Lost Recipes
+
+Divine Flames
+
+Heavenly Furnaces

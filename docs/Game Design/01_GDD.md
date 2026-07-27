@@ -1,62 +1,40 @@
-# Game Design Document
+# 📖 Game Design Document (GDD)
 
-## Core Gameplay Loop
+## 🔄 Core Gameplay Loop
+1.  **Cultivate:** Absorb Qi through meditation, quests, or rare treasures.
+2.  **Breakthrough:** Complete a "Tribulation" or challenge to unlock the next Realm.
+3.  **Explore/Compete:** Use new mechanical unlocks (e.g., Water Walking, Teleportation) to access new zones and resources.
+4.  **Social/Warfare:** Join a Sect, participate in wars, and defend territory.
 
-Explore
+## ⚔️ Combat System
+*   **Action-Based:** No tab-targeting. M1/M2 combos with skill hotkeys.
+*   **Defensive Layers:** 
+    *   *Block:* Reduces incoming damage.
+    *   *Perfect Parry:* Stuns the attacker and restores stamina.
+    *   *Dash/Dodge:* I-frame based movement.
+*   **Status Effects:** Burn, Freeze, Qi-Block, Suppression.
 
-↓
+## 🧘 Cultivation & Progression
+Players progress through several parallel systems:
+| System | Impact |
+| :--- | :--- |
+| **Major Realm** | Unlocks new mechanics (Flight, Perception, Map Access). |
+| **Body Cultivation** | Passives: Defense, Stamina, and Physical Strength. |
+| **Bloodlines** | Unique innate abilities and transformation modes. |
+| **Dao Path** | Elemental specializations (Fire, Sword, Karma, etc.). |
 
-Cultivate
+## 🗺️ World Design
+*   **The Mortal Plane:** The starting open-world continent.
+*   **Secret Realms:** Instanced dungeons with unique environmental mechanics.
+*   **Sect Territories:** Player-controllable zones with tax and resource benefits.
 
-↓
+## 🛠️ Technical Stack (The Realmbreaker Framework)
+*   **Architecture:** Custom Modular Framework (Shared/Server/Client).
+*   **Networking:** BridgeNet2 or custom Bit-buffer for high-frequency combat data.
+*   **State Management:** Strict State-Machine for players (Idle, Attacking, Stunned, Knockdown).
+*   **Data:** ProfileService for robust, transaction-based player saving.
 
-Breakthrough
-
-↓
-
-Unlock New Content
-
-↓
-
-Fight
-
-↓
-
-Collect
-
-↓
-
-Improve Build
-
-↓
-
-Challenge Players
-
-↓
-
-Become Stronger
-
-↓
-
-Repeat
-
----
-
-## Design Rules
-
-Every feature must satisfy at least one of:
-
-- Better progression
-- Better exploration
-- Better PvP
-- Better PvE
-- Better replayability
-- Better social interaction
-
----
-
-## Win Condition
-
-There is no ending.
-
-Players continuously compete to reach the peak of cultivation while unlocking new systems and participating in world activities.
+## 📈 Monetization Philosophy (Fairness)
+*   **No P2W:** You cannot buy a "Power Level." 
+*   **Convenience & Cosmetics:** Skins, VIP titles, faster (but not instant) Qi gathering, and storage.
+*   **Economy:** Player-driven marketplace for rare materials and manuals.

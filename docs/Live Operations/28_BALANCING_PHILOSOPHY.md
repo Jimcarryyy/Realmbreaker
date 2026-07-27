@@ -16,3 +16,12 @@ Topics include:
 - Reward Balance
 - Difficulty Scaling
 - Risk vs Reward
+Define things like:
+
+Pill power
+Cooldowns
+Stacking rules
+Rarity
+Success rates
+Material costs
+Risk vs reward

@@ -59,3 +59,35 @@ Trials
 Preparation
 
 Higher realms introduce Heavenly Tribulations.
+
+# Alchemy
+
+## Purpose
+
+## Alchemy Progression
+
+## Pill Refinement
+
+## Pill Grades
+
+## Refinement Success Rate
+
+## Pill Recipes
+
+## Furnace Types
+
+## Alchemy Techniques
+
+## Fire Control
+
+## Spiritual Flames
+
+## Pill Quality
+
+## Refinement Risks
+
+## Rare Pills
+
+## Legendary Pills
+
+## Heavenly Pills

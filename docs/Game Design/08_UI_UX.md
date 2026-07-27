@@ -31,3 +31,17 @@ Smooth Animations
 Readable Fonts
 
 Premium Feel
+
+Alchemy Window
+
+Recipe Book
+
+Ingredient Storage
+
+Pill Inventory
+
+Refinement Animation
+
+Recipe Discovery
+
+Craft Queue

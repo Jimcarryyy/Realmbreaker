@@ -15,3 +15,19 @@ Topics include:
 - New Systems
 - Expansion Packs
 - Future Ideas
+
+Poison Alchemy
+
+Weapon Refinement
+
+Artifact Refinement
+
+Spirit Beast Medicine
+
+Divine Pills
+
+Immortal Pills
+
+Dual Cultivation Pills
+
+Ancient Alchemy

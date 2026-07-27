@@ -58,3 +58,23 @@ Dungeon
 Secret Area
 
 Cultivation Spot
+
+# Gathering
+
+## Herb Fields
+
+## Spirit Herbs
+
+## Ancient Herbs
+
+## Heavenly Herbs
+
+## Hidden Herb Locations
+
+## Rare Spawn Rules
+
+## Seasonal Herbs
+
+## Dangerous Gathering Zones
+
+## World Resource Distribution
