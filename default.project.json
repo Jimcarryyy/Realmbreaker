@@ -1,0 +1,26 @@
+{
+    "name": "Realmbreaker",
+    "tree": {
+        "$className": "DataModel",
+
+        "ReplicatedStorage": {
+            "$path": "ReplicatedStorage"
+        },
+
+        "ServerScriptService": {
+            "$path": "ServerScriptService"
+        },
+
+        "StarterPlayer": {
+            "$path": "StarterPlayer"
+        },
+
+        "StarterGui": {
+            "$path": "StarterGui"
+        },
+
+        "Workspace": {
+            "$path": "Workspace"
+        }
+    }
+}
