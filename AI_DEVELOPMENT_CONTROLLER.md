@@ -17,8 +17,8 @@ Whenever you generate code or refactor systems for this project, you **MUST** st
    * Server Boot -> [`src/ServerScriptService/Server/Boot/ServerLoader.server.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Boot/ServerLoader.server.lua)
    * Client Controllers -> [`src/StarterPlayer/StarterPlayerScripts/Client/Controllers/`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/)
    * Client Boot -> [`src/StarterPlayer/StarterPlayerScripts/Client/Boot/ClientLoader.client.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Boot/ClientLoader.client.lua)
-3. **No Stat Inflation:** HP scales strictly from **100 to 370 HP max** for V1.0 launch realms (*Mortal Body*, *Qi Condensation*, *Foundation Establishment*, *Core Formation*). Never write arbitrary "trillions" or "K/M/B" stat bloat.
-4. **Single Source of Truth:** The server (`CultivationService.lua`) governs player state. Client controllers (`UIController.lua`, `CultivationController.lua`) react to server state updates delivered via RemoteEvents.
+3. **No Stat Inflation:** HP scales strictly from **100 to 370 HP max** for V1.0 launch realms (*Mortal Realm* through *Golden Core Realm*). Never write arbitrary "trillions" or "K/M/B" stat bloat.
+4. **Single Source of Truth:** The server (`CultivationService.lua`) governs player state. Client controllers (`UIController.lua`, `CultivationController.lua`) react to server state updates delivered via the player's replica.
 5. **No Infinite Yields / Missing Returns:**
    * Every ModuleScript MUST end with `return ModuleName`.
    * Never require nested paths like `Client:WaitForChild("Client")`.
@@ -54,12 +54,13 @@ Development is broken into 5 sequential implementation phases:
 ### 3.1 Completed Components (DO NOT RE-INVENT)
 * [x] **Sync Tooling:** VS Code + Argon 2-way sync verified.
 * [x] **Directory Structure:** Refactored to official production paths in `src/`.
-* [x] **Core Configs:** `RealmsConfig.lua`, `NodesConfig.lua`, `StancesConfig.lua`, `ZonesConfig.lua`, `AssetsConfig.lua`.
+* [x] **Core Configs:** [`RealmsConfig.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/RealmsConfig.lua) updated to support all **12 Major Realms** featuring **9 Minor Orders** each, capped at *Golden Core Realm* (Level 5) for V1.0 launch.
 * [x] **Bootloaders:** `ServerLoader.server.lua` and `ClientLoader.client.lua` working with zero crashes.
 * [x] **Persistence:** [`SaveService.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/SaveService.lua) upgraded to full `ProfileService` standard with session-locking, GDPR compliant player tracking, automatic schema reconciliation, progressive schema migrations, and snapshot recovery [`24_SAVE_SYSTEM.md`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/24_SAVE_SYSTEM.md).
-* [x] **Server Cultivation:** [`CultivationService.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/CultivationService.lua) updated to synchronize progressions dynamically with the player's profile data in real-time.
+* [x] **Server Cultivation:** [`CultivationService.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/CultivationService.lua) updated to synchronize progressions dynamically with the player's profile data in real-time. Includes continuous progression math (no-reset Qi pool carrying over overflow, dynamic `MaxQi` scaling, and continuous $+5\text{ HP}$ to $+11.25\text{ HP}$ health scaling up to 370 HP).
 * [x] **Client Cultivation:** [`CultivationController.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/CultivationController.lua) updated to use `ReplicaController` to automatically govern cultivation stats [`24_SAVE_SYSTEM.md`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/24_SAVE_SYSTEM.md). Maintains smooth 0.35s Sine float-up visuals and 0.3s input debounce.
-* [x] **Client UI:** [`UIController.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua) (Real-time Qi bar, health updates, reset stats testing button).
+* [x] **Client UI:** [`UIController.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua) upscaled to a centralized $300\text{px}\times 110\text{px}$ container utilizing a custom gold-trimmed image asset, matching squircle rounded corner health/Qi bars, bold/chubby `FredokaOne` game font, and high-quality `UIStroke` black text outlines. Has real-time health and Qi synchronization.
+* [x] **Overhead Billboards:** Fixed character spawning bottlenecks; overhead titles and hp bars now dynamically cache and display the player's real-time progression immediately on character spawning.
 * [x] **Replication Engine:** Integrated server-side `ReplicaService` and client-side `ReplicaController` (with dependencies `MadworkMaid`, `MadworkScriptSignal`, and `RateLimiter` moved into `ReplicatedStorage`) to automate and secure player data synchronization.
 
 ### 3.2 Currently In Progress (PHASE 1 - TASK 1.4)
@@ -108,5 +109,5 @@ When working on specific systems, refer to these primary design authority files:
 
 ---
 
-> **Document Version:** v1.1.0  
+> **Document Version:** v1.2.0  
 > **Maintained By:** Lead Game Designer & Technical Architect

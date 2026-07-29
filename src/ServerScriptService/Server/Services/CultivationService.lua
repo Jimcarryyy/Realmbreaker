@@ -47,11 +47,14 @@ export type PlayerCultivationState = {
 local CultivationService = {}
 local playerStates: { [Player]: PlayerCultivationState } = {}
 
--- Grounded Health Calculation Formula (Max 370 HP at Realm 4)
+-- Grounded Health Calculation Formula (Max 370 HP at Golden Core Realm 5, Ninth Order)
 local function calculateMaxHealth(realmLevel: number, minorStage: number): number
 	local realmData = RealmsConfig.Realms[realmLevel]
 	local baseHp = realmData and realmData.BaseMaxHp or 100
-	return baseHp + ((minorStage - 1) * 15)
+
+	-- Scale smoothly so major breakthroughs always increase HP and hit exactly 370 at the V1 cap
+	local multiplier = (realmLevel == 5) and 11.25 or 5
+	return math.floor(baseHp + ((minorStage - 1) * multiplier))
 end
 
 local function syncToProfile(player: Player)
@@ -125,11 +128,12 @@ function CultivationService._onPlayerAdded(player: Player)
 	local minorStg = cultivation and (cultivation.SubStage + 1) or 1
 	local initialRealm = RealmsConfig.Realms[realmLvl]
 
+	local baseRequiredQi = initialRealm and initialRealm.RequiredQi or 100
 	playerStates[player] = {
 		RealmLevel = realmLvl,
 		MinorStage = minorStg,
 		CurrentQi = cultivation and cultivation.CurrentQi or 0,
-		MaxQi = initialRealm and initialRealm.RequiredQi or 100,
+		MaxQi = baseRequiredQi * minorStg,
 		IsMeditating = false,
 	}
 
@@ -170,7 +174,7 @@ function CultivationService.AddQi(player: Player, amount: number): ()
 	local state = playerStates[player]
 	if not state then return end
 
-	if state.RealmLevel >= 4 and state.MinorStage >= 4 then
+	if state.RealmLevel >= 5 and state.MinorStage >= 9 then
 		state.CurrentQi = state.MaxQi
 		CultivationUpdatedRemote:FireClient(player, state)
 		return
@@ -191,7 +195,7 @@ function CultivationService._processMeditationTick()
 		if not state.IsMeditating then continue end
 		if not player.Character or not player.Character:FindFirstChild("Humanoid") then continue end
 
-		if state.RealmLevel >= 4 and state.MinorStage >= 4 then
+		if state.RealmLevel >= 5 and state.MinorStage >= 9 then
 			state.CurrentQi = state.MaxQi
 			CultivationUpdatedRemote:FireClient(player, state)
 			continue
@@ -214,7 +218,7 @@ end
 function CultivationService._attemptBreakthrough(player: Player, state: PlayerCultivationState)
 	if not state.IsMeditating then return end
 
-	if state.RealmLevel >= 4 and state.MinorStage >= 4 then
+	if state.RealmLevel >= 5 and state.MinorStage >= 9 then
 		state.CurrentQi = state.MaxQi
 		return
 	end
@@ -223,10 +227,11 @@ function CultivationService._attemptBreakthrough(player: Player, state: PlayerCu
 	if not currentRealmData then return end
 
 	local isMajor = false
+	local oldMaxQi = state.MaxQi -- Store old max to calculate overflow
 
+	-- 1. Advance the stage without resetting CurrentQi to 0
 	if state.MinorStage < currentRealmData.MinorStages then
 		state.MinorStage += 1
-		state.CurrentQi = 0
 	else
 		local nextRealmIndex = state.RealmLevel + 1
 		local nextRealmData = RealmsConfig.Realms[nextRealmIndex]
@@ -234,11 +239,19 @@ function CultivationService._attemptBreakthrough(player: Player, state: PlayerCu
 		if nextRealmData then
 			state.RealmLevel = nextRealmIndex
 			state.MinorStage = 1
-			state.CurrentQi = 0
-			state.MaxQi = nextRealmData.RequiredQi
 			isMajor = true
 		end
 	end
+
+	-- 2. Dynamically update the MaxQi limit based on the new stage
+	local nextRealmData = RealmsConfig.Realms[state.RealmLevel]
+	if nextRealmData then
+		state.MaxQi = nextRealmData.RequiredQi * state.MinorStage
+	end
+
+	-- 3. Adjust current Qi to preserve progress and carry over any extra overflow Qi
+	local overflow = math.max(0, state.CurrentQi - oldMaxQi)
+	state.CurrentQi = oldMaxQi + overflow 
 
 	if player.Character and player.Character:FindFirstChild("Humanoid") then
 		local humanoid = player.Character.Humanoid
@@ -246,7 +259,8 @@ function CultivationService._attemptBreakthrough(player: Player, state: PlayerCu
 		humanoid.MaxHealth = newMaxHp
 		humanoid.Health = newMaxHp
 	end
-    syncToProfile(player)
+
+	syncToProfile(player)
 	BreakthroughTriggeredRemote:FireAllClients(player, isMajor, state.RealmLevel, state.MinorStage)
 end
 
