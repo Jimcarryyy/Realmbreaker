@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local ContentProvider = game:GetService("ContentProvider")
 local TweenService = game:GetService("TweenService")
+local ReplicaController = require(ReplicatedStorage:WaitForChild("ReplicaController"))
 
 local LocalPlayer = Players.LocalPlayer
 
@@ -68,6 +69,20 @@ function CultivationController.Init()
 	end)
 
 	print(">>> CULTIVATION CONTROLLER STARTED (Smooth Ethereal Easing Active) <<<")
+
+	-- ADD: Listen to the player's replica to govern current progression stats
+	ReplicaController.ReplicaOfClassCreated("PlayerReplica", function(replica)
+		local function updateFromReplica()
+			local cultivation = replica.Data.Cultivation
+			if cultivation then
+				currentRealmLevel = cultivation.RealmTier + 1
+				print(string.format("[ReplicaSync] Updated currentRealmLevel to %d from Replica", currentRealmLevel))
+			end
+		end
+
+		updateFromReplica()
+		replica:ListenToChange({"Cultivation"}, updateFromReplica)
+	end)
 
 	-- Listen for Key 'M' with 0.3s Input Debounce
 	UserInputService.InputBegan:Connect(function(input: InputObject, gameProcessed: boolean)

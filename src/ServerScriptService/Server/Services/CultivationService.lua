@@ -54,6 +54,20 @@ local function calculateMaxHealth(realmLevel: number, minorStage: number): numbe
 	return baseHp + ((minorStage - 1) * 15)
 end
 
+local function syncToProfile(player: Player)
+	local state = playerStates[player]
+	if not state then return end
+	local data = SaveService.LoadData(player)
+	if data and data.Cultivation then
+		data.Cultivation.RealmTier = state.RealmLevel - 1
+		data.Cultivation.SubStage = state.MinorStage - 1
+		data.Cultivation.CurrentQi = state.CurrentQi
+		
+		-- ADD: Automatically replicate the updated Cultivation stats to the client
+		SaveService.UpdateReplica(player, {"Cultivation"}, data.Cultivation)
+	end
+end
+
 function CultivationService.Init()
 	print(">>> CULTIVATION SERVICE MODULE LOADED <<<")
 
@@ -85,7 +99,7 @@ function CultivationService.Init()
 				player.Character.Humanoid.Health = 100
 			end
 
-			SaveService.SaveData(player, { RealmLevel = 1, MinorStage = 1, CurrentQi = 0 })
+			syncToProfile(player) -- CHANGED
 			CultivationUpdatedRemote:FireClient(player, state)
 			print(string.format("🔄 [Data Reset] Reset stats for %s", player.Name))
 		end
@@ -105,14 +119,16 @@ end
 
 function CultivationService._onPlayerAdded(player: Player)
 	local savedData = SaveService.LoadData(player)
-	local realmLvl = savedData and savedData.RealmLevel or 1
-	local minorStg = savedData and savedData.MinorStage or 1
+	local cultivation = savedData and savedData.Cultivation
+	
+	local realmLvl = cultivation and (cultivation.RealmTier + 1) or 1
+	local minorStg = cultivation and (cultivation.SubStage + 1) or 1
 	local initialRealm = RealmsConfig.Realms[realmLvl]
 
 	playerStates[player] = {
 		RealmLevel = realmLvl,
 		MinorStage = minorStg,
-		CurrentQi = savedData and savedData.CurrentQi or 0,
+		CurrentQi = cultivation and cultivation.CurrentQi or 0,
 		MaxQi = initialRealm and initialRealm.RequiredQi or 100,
 		IsMeditating = false,
 	}
@@ -137,15 +153,8 @@ function CultivationService._onPlayerAdded(player: Player)
 end
 
 function CultivationService._onPlayerRemoving(player: Player)
-	local state = playerStates[player]
-	if state then
-		SaveService.SaveData(player, {
-			RealmLevel = state.RealmLevel,
-			MinorStage = state.MinorStage,
-			CurrentQi = state.CurrentQi,
-		})
-		playerStates[player] = nil
-	end
+	syncToProfile(player)
+	playerStates[player] = nil
 end
 
 function CultivationService.ToggleMeditation(player: Player): boolean
@@ -173,6 +182,7 @@ function CultivationService.AddQi(player: Player, amount: number): ()
 		CultivationService._attemptBreakthrough(player, state)
 	end
 
+    syncToProfile(player)
 	CultivationUpdatedRemote:FireClient(player, state)
 end
 
@@ -196,6 +206,7 @@ function CultivationService._processMeditationTick()
 			CultivationService._attemptBreakthrough(player, state)
 		end
 
+		syncToProfile(player)
 		CultivationUpdatedRemote:FireClient(player, state)
 	end
 end
@@ -235,7 +246,7 @@ function CultivationService._attemptBreakthrough(player: Player, state: PlayerCu
 		humanoid.MaxHealth = newMaxHp
 		humanoid.Health = newMaxHp
 	end
-
+    syncToProfile(player)
 	BreakthroughTriggeredRemote:FireAllClients(player, isMajor, state.RealmLevel, state.MinorStage)
 end
 
@@ -246,6 +257,7 @@ function CultivationService.SpendQi(player: Player, amount: number): boolean
 	end
 
 	state.CurrentQi -= amount
+	syncToProfile(player)
 	CultivationUpdatedRemote:FireClient(player, state)
 	return true
 end
