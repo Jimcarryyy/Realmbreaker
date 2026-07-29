@@ -1,7 +1,10 @@
-# 🤖 AI Workflows & Templates
+# 💬 Recommended AI Studio Task Prompts
 
-## Skill Generation Template
-When generating a new skill, follow this flow:
-1.  **Data:** Add entry to `SkillData.lua` (Cost, Realm, Cooldown).
-2.  **Logic:** Add function to `SkillExecutors.lua`.
-3.  **Visuals:** Add listener to `EffectController.lua` for the `SkillExecuted` signal.
+## 1. Skill Implementation Prompt
+> "I need to add a new skill called [SkillName] to Realmbreaker. Refer to `SkillData.lua`, `SkillExecutors.lua`, and `SkillEffectController.client.lua`. Provide the exact file paths, file types, action required, and Luau code updates without changing unrelated logic."
+
+## 2. Dynamic Documentation Update Prompt (Session End)
+> "END"
+
+## 3. Refactoring Guardrail Prompt
+> "Review `CultivationService.lua` and `SkillService.lua` for redundant logic. Do not guess any missing functions. If you need additional context from client controllers, ask for their GitHub links first."
