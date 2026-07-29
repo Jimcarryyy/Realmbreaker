@@ -12,12 +12,12 @@ export type ZoneConfig = {
 	},
 }
 
-local ZoneData: { [string]: ZoneConfig } = {
+local ZonesConfig: { [string]: ZoneConfig } = {
 	["MortalVillage"] = {
-		DisplayName = "Greenleaf Village",
-		MinRealmLevel = 1, -- Mortal Realm
+		DisplayName = "Bamboo Leaf Village",
+		MinRealmLevel = 1, -- Mortal Body
 		QiDensityMultiplier = 1.0,
-		AmbientAudioId = "rbxassetid://1837877611",
+		AmbientAudioId = "",
 		LightingSettings = {
 			ClockTime = 14,
 			Brightness = 2,
@@ -26,8 +26,8 @@ local ZoneData: { [string]: ZoneConfig } = {
 		},
 	},
 	["OuterSect"] = {
-		DisplayName = "Azure Cloud Sect - Outer Grounds",
-		MinRealmLevel = 2, -- Qi Condensation Realm
+		DisplayName = "Outer Sect Grounds",
+		MinRealmLevel = 2, -- Qi Condensation
 		QiDensityMultiplier = 2.5,
 		AmbientAudioId = "rbxassetid://1837877888",
 		LightingSettings = {
@@ -38,9 +38,9 @@ local ZoneData: { [string]: ZoneConfig } = {
 		},
 	},
 	["SpiritQiDen"] = {
-		DisplayName = "Dragon Vein Spirit Spring",
-		MinRealmLevel = 3, -- Foundation Establishment Realm
-		QiDensityMultiplier = 10.0,
+		DisplayName = "Mistveil Caverns (Contested)",
+		MinRealmLevel = 3, -- Foundation Establishment
+		QiDensityMultiplier = 5.0,
 		AmbientAudioId = "rbxassetid://1837878100",
 		LightingSettings = {
 			ClockTime = 0,
@@ -51,4 +51,4 @@ local ZoneData: { [string]: ZoneConfig } = {
 	},
 }
 
-return ZoneData
+return ZonesConfig

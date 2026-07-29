@@ -2,8 +2,11 @@
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local NodeData = require(ReplicatedStorage.Shared.Configs.NodeData) :: any
-local CultivationService = require(script.Parent.CultivationService) :: any
+local Shared = ReplicatedStorage:WaitForChild("Shared")
+local Config = Shared:WaitForChild("Config")
+local NodesConfig = require(Config:WaitForChild("NodesConfig") :: ModuleScript)
+
+local CultivationService = require(script.Parent:WaitForChild("CultivationService")) :: any
 
 local WorldObjectService = {}
 local activeNodes: { [Instance]: boolean } = {}
@@ -22,9 +25,9 @@ function WorldObjectService.SetupNode(node: Instance): ()
 	if not (node:IsA("BasePart") or node:IsA("Model")) then return end
 
 	local nodeType = node:GetAttribute("NodeType") :: string?
-	if not nodeType or not NodeData[nodeType] then return end
+	if not nodeType or not NodesConfig[nodeType] then return end
 
-	local config = NodeData[nodeType]
+	local config = NodesConfig[nodeType]
 
 	local prompt = node:FindFirstChildOfClass("ProximityPrompt")
 	if not prompt then
@@ -48,10 +51,9 @@ end
 function WorldObjectService.HarvestNode(player: Player, node: Instance, nodeType: string): ()
 	if not activeNodes[node] then return end
 
-	local config = NodeData[nodeType]
+	local config = NodesConfig[nodeType]
 	if not config then return end
 
-	-- Validate Player Distance Server-Side
 	local character = player.Character
 	local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
 	local nodePart = node:IsA("BasePart") and node or node:FindFirstChildWhichIsA("BasePart")
@@ -60,7 +62,6 @@ function WorldObjectService.HarvestNode(player: Player, node: Instance, nodeType
 		return
 	end
 
-	-- Lock node interaction state
 	activeNodes[node] = false
 
 	local prompt = node:FindFirstChildOfClass("ProximityPrompt")
@@ -69,11 +70,8 @@ function WorldObjectService.HarvestNode(player: Player, node: Instance, nodeType
 	end
 
 	WorldObjectService.SetNodeVisibility(node, false)
-
-	-- Award Qi
 	CultivationService.AddQi(player, config.QiReward)
 
-	-- Handle Respawn Cooldown
 	task.delay(config.RespawnTime, function()
 		if not node:IsDescendantOf(workspace) then return end
 

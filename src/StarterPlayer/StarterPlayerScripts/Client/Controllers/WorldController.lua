@@ -8,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 local Remotes = ReplicatedStorage:WaitForChild("Remotes") :: Folder
 local ZoneChangedRemote = Remotes:WaitForChild("ZoneChanged") :: RemoteEvent
 
-local ZoneController = {}
+local WorldController = {}
 
 -- Sound Setup
 local ambientSound = Instance.new("Sound")
@@ -17,11 +17,11 @@ ambientSound.Looped = true
 ambientSound.Volume = 0
 ambientSound.Parent = Workspace
 
-function ZoneController.Init()
-	ZoneChangedRemote.OnClientEvent:Connect(ZoneController.OnZoneChanged)
+function WorldController.Init()
+	ZoneChangedRemote.OnClientEvent:Connect(WorldController.OnZoneChanged)
 end
 
-function ZoneController.OnZoneChanged(zoneId: string, zoneConfig: any)
+function WorldController.OnZoneChanged(zoneId: string, zoneConfig: any)
 	-- 1. Smoothly Tween Lighting
 	local tweenInfo = TweenInfo.new(2.0, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
@@ -47,12 +47,12 @@ function ZoneController.OnZoneChanged(zoneId: string, zoneConfig: any)
 	end
 
 	-- 3. Display Region Banner (HUD Notification trigger)
-	ZoneController._displayBanner(zoneConfig.DisplayName)
+	WorldController._displayBanner(zoneConfig.DisplayName)
 end
 
-function ZoneController._displayBanner(displayName: string)
+function WorldController._displayBanner(displayName: string)
 	-- Placeholder for UI notification service trigger
-	print("[ZoneController] NOW ENTERING: " .. displayName)
+	print("[WorldController] NOW ENTERING: " .. displayName)
 end
 
-return ZoneController
+return WorldController

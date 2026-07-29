@@ -9,9 +9,9 @@ local LocalPlayer = Players.LocalPlayer
 local Remotes = ReplicatedStorage:WaitForChild("Remotes")
 local CastSkillRemote = Remotes:WaitForChild("CastSkill") :: RemoteEvent
 
-local SkillController = {}
+local CombatController = {}
 
-function SkillController.Init()
+function CombatController.Init()
 
 	UserInputService.InputBegan:Connect(function(input, processed)
 
@@ -25,9 +25,9 @@ function SkillController.Init()
 
 	end)
 
-	print(">>> SKILL CONTROLLER INITIALIZED <<<")
+	print(">>> COMBAT CONTROLLER INITIALIZED <<<")
 end
 
-SkillController.Init()
+CombatController.Init()
 
-return SkillController
+return CombatController

@@ -7,28 +7,28 @@ export type NodeConfig = {
 	HoldDuration: number,
 }
 
-local NodeData: { [string]: NodeConfig } = {
+local NodesConfig: { [string]: NodeConfig } = {
 	SpiritHerb = {
-		Name = "Spirit Qi Spring",
-		QiReward = 200,
-		RespawnTime = 20,
+		Name = "Spirit Qi Herb",
+		QiReward = 20,
+		RespawnTime = 15,
 		RequiredRealm = 1,
-		HoldDuration = 1.5,
+		HoldDuration = 1.0,
 	},
 	SpiritSpring = {
 		Name = "Spirit Qi Spring",
-		QiReward = 200,
+		QiReward = 50,
 		RespawnTime = 20,
 		RequiredRealm = 1,
 		HoldDuration = 2.0,
 	},
 	QiCrystal = {
-		Name = "Qi Crystal Array",
-		QiReward = 1000,
+		Name = "Contested Qi Artery",
+		QiReward = 200,
 		RespawnTime = 40,
 		RequiredRealm = 2,
 		HoldDuration = 4.0,
 	},
 }
 
-return NodeData
+return NodesConfig

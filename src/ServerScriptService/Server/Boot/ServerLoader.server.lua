@@ -1,22 +1,21 @@
 --!strict
 local ServerScriptService = game:GetService("ServerScriptService")
-local Services = ServerScriptService:WaitForChild("Services")
-local WorldObjectService = require(ServerScriptService.Services.WorldObjectService)
+local Server = ServerScriptService:WaitForChild("Server")
+local Services = Server:WaitForChild("Services")
 
-
--- Require Services
-local DataService = require(Services:WaitForChild("DataService") :: ModuleScript)
+-- Require Services from Server/Services directory
+local SaveService = require(Services:WaitForChild("SaveService") :: ModuleScript)
 local WorldService = require(Services:WaitForChild("WorldService") :: ModuleScript)
 local CultivationService = require(Services:WaitForChild("CultivationService") :: ModuleScript)
-local SkillService = require(Services:WaitForChild("SkillService") :: ModuleScript)
-
+local WorldObjectService = require(Services:WaitForChild("WorldObjectService") :: ModuleScript)
+local CombatService = require(Services:WaitForChild("CombatService") :: ModuleScript)
 
 -- Initialize Services in Order
-DataService.Init()
+SaveService.Init()
 WorldService.Init()
 CultivationService.Init()
 WorldObjectService.Init()
-SkillService.Init()
+CombatService.Init()
 
 print("========================================")
 print(">>> REALMBREAKER SERVER INITIALIZED <<<")

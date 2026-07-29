@@ -1,5 +1,4 @@
 --!strict
-
 export type SkillConfig = {
 	SkillId: string,
 	DisplayName: string,
@@ -8,16 +7,14 @@ export type SkillConfig = {
 	Cooldown: number,
 }
 
-local SkillData: { [string]: SkillConfig } = {
-
+local StancesConfig: { [string]: SkillConfig } = {
 	QiPalm = {
 		SkillId = "QiPalm",
-		DisplayName = "Qi Palm",
+		DisplayName = "Thunder-Palm Strike",
 		RequiredRealm = 1,
-		QiCost = 25,
-		Cooldown = 3,
+		QiCost = 15,
+		Cooldown = 3.0,
 	},
-
 }
 
-return SkillData
+return StancesConfig

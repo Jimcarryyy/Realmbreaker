@@ -12,7 +12,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local Assets = Shared:WaitForChild("Assets")
 
-local Animations = require(Assets:WaitForChild("Animations"))
+-- NEW CODE (Correct Path):
+local AssetsConfig = require(ReplicatedStorage.Shared.Assets:WaitForChild("AssetsConfig"))
+local Animations = AssetsConfig.Animations
 
 local Remotes = ReplicatedStorage:WaitForChild("Remotes") :: Folder
 local BreakthroughTriggeredRemote = Remotes:WaitForChild("BreakthroughTriggered") :: RemoteEvent

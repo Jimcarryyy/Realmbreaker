@@ -1,15 +1,13 @@
 --!strict
-local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local CollectionService = game:GetService("CollectionService")
 
 local Shared = ReplicatedStorage:WaitForChild("Shared")
-local Configs = Shared:WaitForChild("Configs")
-local ZoneData = require(Configs:WaitForChild("ZoneData") :: ModuleScript)
+local Config = Shared:WaitForChild("Config")
+local ZonesConfig = require(Config:WaitForChild("ZonesConfig") :: ModuleScript)
 
 local WorldService = {}
-
 local playerCurrentZone: { [Player]: string } = {}
 
 local Remotes = ReplicatedStorage:WaitForChild("Remotes") :: Folder
@@ -74,18 +72,15 @@ function WorldService._isPointInPart(point: Vector3, part: BasePart): boolean
 end
 
 function WorldService._onPlayerZoneChanged(player: Player, newZoneId: string, oldZoneId: string?)
-	local zoneConfig = ZoneData[newZoneId]
+	local zoneConfig = ZonesConfig[newZoneId]
 	if not zoneConfig then return end
 
 	ZoneChangedRemote:FireClient(player, newZoneId, zoneConfig)
-
-	print(string.format("[WorldService] %s entered zone: %s (Qi Multiplier: %.1fx)", 
-		player.Name, zoneConfig.DisplayName, zoneConfig.QiDensityMultiplier))
 end
 
 function WorldService.GetPlayerQiMultiplier(player: Player): number
 	local zoneId = playerCurrentZone[player] or "MortalVillage"
-	local config = ZoneData[zoneId]
+	local config = ZonesConfig[zoneId]
 	return config and config.QiDensityMultiplier or 1.0
 end
 

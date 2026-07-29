@@ -1,437 +1,144 @@
-# 🚀 Realmbreaker Development Phases
+# Realmbreaker — Project Overview & Early Publish Blueprint
 
-This document defines the official development workflow for **Realmbreaker**.
-
-Each phase builds upon the previous one. A phase should be considered complete before moving to the next unless dependencies require minor revisions.
-
-> **Important**
->
-> The following documents are considered the project's **Source of Truth**:
->
-> - `00_PROJECT_OVERVIEW.md`
-> - `01_GDD.md`
-> - `15_GAME_IDENTITY.md`
-> - `16_DESIGN_PRINCIPLES.md`
+> **Official Game Design Authority**  
+> **Target Platform:** Roblox (PC, Mobile, Console)  
+> **Genre:** Xianxia / Wuxia Cultivation MMORPG  
+> **Status:** Pre-Production / Design Bible Phase  
+> **Release Target:** Version 1.0 (Early Publish / DevEx Viable Baseline)
 
 ---
 
-# 📌 Development Pipeline
+## 1. Executive Summary
 
-```text
-Phase 0 ─ Foundation
-        │
-        ▼
-Phase 1 ─ World Design
-        │
-        ▼
-Phase 2 ─ Player Journey
-        │
-        ▼
-Phase 3 ─ Cultivation System
-        │
-        ▼
-Phase 4 ─ Combat System
-        │
-        ▼
-Phase 5 ─ Social Systems
-        │
-        ▼
-Phase 6 ─ Economy & Monetization
-        │
-        ▼
-Phase 7 ─ UI / UX
-        │
-        ▼
-Phase 8 ─ Technical Architecture
-        │
-        ▼
-Phase 9 ─ Production Planning
-        │
-        ▼
-Production Begins
-```
+**Realmbreaker** is an action-driven Xianxia/Wuxia MMORPG designed to break away from traditional "afk clicker" cultivation simulators on Roblox. 
+
+Instead of relying on artificial stat inflation, **Realmbreaker** anchors every tier of progression to meaningful mechanical unlocks—new combat stances, movement abilities, environmental access, and world interactions.
+
+> **Early Publish Mandate (V1.0):**  
+> To maximize early player retention and establish early Developer Exchange (DevEx) monetization, Version 1.0 focuses on a tight, hyper-polished 4-Realm progression loop with deep interconnected gameplay mechanics, rather than an expansive but empty world.
 
 ---
 
-# 📍 Phase 0 — Foundation
+## 2. Core Design Pillars
 
-## Objective
-
-Strengthen the project's vision, philosophy, scope, and development goals before expanding any gameplay systems.
-
-## Documents
-
-- `00_PROJECT_OVERVIEW.md`
-- `01_GDD.md`
-- `13_ROADMAP.md`
-- `15_GAME_IDENTITY.md`
-- `16_DESIGN_PRINCIPLES.md`
-- `README.md`
-
-## Expand
-
-- Vision
-- Mission
-- Core Pillars
-- Unique Selling Points
-- Target Audience
-- Success Metrics
-- Scope
-- Risks
-- Development Philosophy
-- Long-Term Goals
-
-## Deliverables
-
-- Complete project vision
-- Clear design philosophy
-- Consistent documentation standards
+| Pillar | Principle | Gameplay Execution |
+| :--- | :--- | :--- |
+| **1. Purposeful Progression** | No meaningless numbers. | Advancing a realm unlocks physical mechanics (e.g., Qi Shielding, Air Dashing, Flight, Domain Stances) rather than just inflated stats. |
+| **2. Interconnected World** | No isolated systems. | Alchemy requires herbs from dangerous PvP zones; crafting requires rare drops; breakthroughs require environmental Qi density. |
+| **3. Skill-Based Combat** | Strategy over pure stats. | Active parrying, animation-cancel dodging, stamina management, and positional Qi stances enable lower-realm players to outplay careless higher-realm players. |
+| **4. Ethical Monetization** | Respect the player. | Focus on convenience, time-efficiency, and cosmetic status. No paywalls that break competitive PvP integrity. |
 
 ---
 
-# 🌍 Phase 1 — World Design
+## 3. Interconnected Core Loop
 
-## Objective
-
-Design the world that every gameplay system depends on.
-
-## Documents
-
-- `02_WORLD.md`
-- `12_LORE.md`
-- `31_CONTENT_EXPANSION.md`
-
-## Expand
-
-- Continents
-- Regions
-- Kingdoms
-- Villages
-- Cities
-- Sects
-- Safe Zones
-- Dangerous Zones
-- Resource Areas
-- World Bosses
-- Hidden Areas
-- Ancient Ruins
-- Future Regions
-
-## Deliverables
-
-- Complete world structure
-- Exploration flow
-- World progression
++---------------------------------------------------+
+|            1. EXPLORATION & GATHERING             |
+|   Harvest Herbs, Locate Qi Arteries,              |
+|   Explore Caves, Defeat Spirit Beasts             |
++-------------------------+-------------------------+
+                          |
+                          v
++---------------------------------------------------+
+|              2. CULTIVATION & ALCHEMY             |
+|   Refine Qi, Brew Pills, Condense Core,           |
+|   Survive High-Stakes Tribulation                 |
++-------------------------+-------------------------+
+                          |
+                          v
++---------------------------------------------------+
+|               3. COMBAT & TERRITORY               |
+|   Unlock Stances, Enter Mystic Realms,            |
+|   Compete for Open-World Qi Nodes                 |
++-------------------------+-------------------------+
+                          |
+                          v
++---------------------------------------------------+
+|            4. ECONOMY & MONETIZATION              |
+|   Player Trading, Sect Tributes, QoL Passes       |
+|   Cosmetic Auras, VIP Convenience                 |
++---------------------------------------------------+
 
 ---
 
-# 🎮 Phase 2 — Player Journey
+## 4. Early Publish Scope Boundaries (V1.0 Launch Baseline)
 
-## Objective
+To ensure rapid time-to-market while delivering maximum replayability, feature scope is strictly governed for V1.0:
 
-Design the complete player experience from character creation to endgame.
+### 4.1 Cultivation Realms Matrix (V1.0 Cap)
 
-## Documents
+[ Mortal Body ] ---> [ Qi Condensation ] ---> [ Foundation Establishment ] ---> [ Core Formation ]
+ (Basic Combat)        (Qi Gauge & Blast)       (Air Dash & Alchemy)           (Flight & Domains)
 
-- `05_PROGRESSION.md`
-- `20_RETENTION.md`
-- `33_PLAYER_PSYCHOLOGY.md`
+| Realm Tier | Name | Key Gameplay Unlocks | World Access |
+| :---: | :--- | :--- | :--- |
+| **0** | **Mortal Body** | Basic Light/Heavy M1 combos, stamina roll, martial stance selection. | Safe Zone (Zone 1) |
+| **1** | **Qi Condensation** | Qi Energy Bar, ranged Qi projectiles, Qi Sensing HUD. | Outer Wilds (Zone 1) |
+| **2** | **Foundation Establishment** | Air Dashing, Qi Shielding (Parry Buffer), Portable Alchemy Crafting. | Mistveil Forest (Zone 2) |
+| **3** | **Core Formation** *(V1.0 Cap)* | Flight / Levitation, Domain Stance Buffs, Sect Leadership capabilities. | Ancient Qi Caverns & Contested Nodes |
 
-## Expand
+### 4.2 Content Scope Comparison
 
-- Character Creation
-- Tutorial
-- First 10 Minutes
-- First Hour
-- First Day
-- First Breakthrough
-- First Dungeon
-- First Boss
-- First PvP
-- First Sect
-- Mid Game
-- Late Game
-- End Game
-
-## Deliverables
-
-- Complete player progression
-- Engagement strategy
-- Retention strategy
+| Included in V1.0 Launch | Deferred to Post-Launch (V1.1+) |
+| :--- | :--- |
+| 4 Cultivation Realms (Mortal to Core Formation) | Upper Realms (Nascent Soul, Soul Formation, etc.) |
+| 2 World Zones (Sect Village + Mistveil Forest) | Upper Celestial Plane Maps & Floating Isles |
+| 2 Martial Disciplines (Sword Mastery + Unarmed) | Spear, Blood Blade & Staff Disciplines |
+| 1 Co-op Mystic Realm Dungeon | Infinite Tower & World Raid Bosses |
+| Open-World Contested Qi Vein PvP | Cross-Server Faction Territory Siege Wars |
+| Player Economy & Safe Trade System | Player Housing / Custom Sect Base Building |
 
 ---
 
-# ☯️ Phase 3 — Cultivation System
+## 5. DevEx & Monetization Engine
 
-## Objective
+The monetization model is built around driving high average revenue per paying user (ARPPU) while maintaining high day-7 and day-30 retention:
 
-Design every cultivation mechanic and progression system.
+> **Monetization Architecture:** All paid items focus on Time Efficiency, Quality of Life (QoL), and Social Status without breaking PvP integrity.
 
-## Documents
-
-- `03_CULTIVATION.md`
-- `05_PROGRESSION.md`
-- `09_ECONOMY.md`
-
-## Expand
-
-- Qi System
-- Realms
-- Breakthroughs
-- Heavenly Tribulations
-- Spirit Roots
-- Bloodlines
-- Body Cultivation
-- Meditation
-- Dao Comprehension
-- Manuals
-- Resources
-- Cultivation Locations
-
-## Deliverables
-
-- Complete cultivation framework
-- Realm progression
-- Resource requirements
+| Quality of Life | Status & Cosmetics | Convenience Passes |
+| :--- | :--- | :--- |
+| Extra Inventory Slots | Custom Sword Flight Trails | Portable Alchemy Cauldron |
+| Auto-Meditation Off-line | Title Badges & Name Colors | Qi Sense HUD Upgrade |
+| Sect VIP Pass (+10% Qi Rate) | Visual Body Auras | Fast-Travel Waypoints |
 
 ---
 
-# ⚔️ Phase 4 — Combat System
+## 6. Technical Architecture & Data Standards
 
-## Objective
+To guarantee cross-platform performance (PC, Mobile, Console) and absolute data security:
 
-Design the complete combat experience.
-
-## Documents
-
-- `04_COMBAT.md`
-- `06_PVP.md`
-- `07_PVE.md`
-- `28_BALANCING_PHILOSOPHY.md`
-
-## Expand
-
-- Controls
-- Movement
-- Combos
-- Hitboxes
-- Skills
-- Ultimate Skills
-- Boss AI
-- Enemy AI
-- Arena
-- Open World PvP
-- Realm Balancing
-
-## Deliverables
-
-- Complete combat design
-- PvE structure
-- PvP structure
+1. **State Management:** Single-authority state handling via ProfileService and ReplicaService to neutralize duplication exploits in trading and inventory systems.
+2. **Deterministic Combat Engine:** Client-side prediction for visual feedback paired with server-side validation for hitboxes and parry windows.
+3. **Modular Framework:** Decoupled Services (Server) and Controllers (Client) following strict single-responsibility principles.
 
 ---
 
-# 🏛️ Phase 5 — Social Systems
+## 7. Master Documentation Index
 
-## Objective
+### Game Design Documentation
+* `01_GDD.md` — Game Design Document & Core Mechanics
+* `02_WORLD.md` — World Architecture & Zone Specifications
+* `03_CULTIVATION.md` — Cultivation System, Breakthroughs & Stats
+* `04_COMBAT.md` — Combat Engine, Stances & Hitboxes
+* `05_PROGRESSION.md` — Player Journey & Leveling Curves
+* `06_PVP.md` — Open-World PvP & Contested Qi Veins
+* `07_PVE.md` — Dungeon System & Spirit Beast Bosses
+* `08_UI_UX.md` — User Interface Architecture & HUD Layout
+* `09_ECONOMY.md` — Player Trading, Currencies & Resource Sinks
 
-Create meaningful multiplayer interactions.
+### Technical Design Documentation
+* `21_FOLDER_STRUCTURE.md` — Code Base Layout
+* `22_DATABASE_DESIGN.md` — Data Schemas & Persistence
+* `23_NETWORK_ARCHITECTURE.md` — Client-Server Replication
+* `24_SAVE_SYSTEM.md` — Anti-Exploit Profile Management
 
-## Documents
-
-- `06_PVP.md`
-- `09_ECONOMY.md`
-- `18_LIVE_SERVICE.md`
-- `29_COMMUNITY_MANAGEMENT.md`
-- `30_LIVE_EVENTS.md`
-
-## Expand
-
-- Sects
-- Alliances
-- Trading
-- Territory Control
-- Guild Wars
-- Rankings
-- Community Events
-- Social Rewards
-- Seasonal Events
-
-## Deliverables
-
-- Complete social ecosystem
-- Multiplayer progression
-- Community systems
+### Monetization & Live Operations
+* `17_MONETIZATION.md` — Revenue Strategy & Robux Sinks
+* `20_RETENTION.md` — Daily Loops & Player Lifecycles
+* `28_BALANCING_PHILOSOPHY.md` — Stat Scaling & Meta Management
 
 ---
 
-# 💰 Phase 6 — Economy & Monetization
-
-## Objective
-
-Build a healthy economy and fair monetization model.
-
-## Documents
-
-- `09_ECONOMY.md`
-- `17_MONETIZATION.md`
-- `19_ANALYTICS.md`
-- `28_BALANCING_PHILOSOPHY.md`
-
-## Expand
-
-- Currency
-- Trading
-- Auction House
-- Crafting
-- Drop Tables
-- Inflation Control
-- Premium Membership
-- Battle Pass
-- Cosmetics
-- Developer Products
-- Analytics
-
-## Deliverables
-
-- Sustainable economy
-- Fair monetization
-- Reward balance
-
----
-
-# 🎨 Phase 7 — UI / UX
-
-## Objective
-
-Design an intuitive and visually consistent player interface.
-
-## Documents
-
-- `08_UI_UX.md`
-- `11_ART_DIRECTION.md`
-- `25_ASSET_PIPELINE.md`
-
-## Expand
-
-- HUD
-- Inventory
-- Character Screen
-- Cultivation UI
-- Skill Tree
-- Menus
-- Icons
-- Colors
-- Fonts
-- Mobile Layout
-- Accessibility
-- Visual Effects
-
-## Deliverables
-
-- UI flow
-- UX guidelines
-- Art direction
-
----
-
-# 🏗️ Phase 8 — Technical Architecture
-
-## Objective
-
-Design the technical foundation before implementation.
-
-## Documents
-
-- `10_TECHNICAL_ARCHITECTURE.md`
-- `21_FOLDER_STRUCTURE.md`
-- `22_DATABASE_DESIGN.md`
-- `23_NETWORK_ARCHITECTURE.md`
-- `24_SAVE_SYSTEM.md`
-- `26_CODING_STANDARD.md`
-- `27_NAMING_CONVENTION.md`
-
-## Expand
-
-- Services
-- Modules
-- Folder Structure
-- Networking
-- Data Flow
-- Save System
-- Performance
-- Security
-- Anti-Cheat
-- Scalability
-
-## Deliverables
-
-- Complete architecture
-- Folder hierarchy
-- Technical specifications
-
----
-
-# 🚀 Phase 9 — Production Planning
-
-## Objective
-
-Prepare the project for active development.
-
-## Documents
-
-- `13_ROADMAP.md`
-- `18_LIVE_SERVICE.md`
-- `30_LIVE_EVENTS.md`
-- `32_PATCH_NOTES.md`
-
-## Expand
-
-- Milestones
-- Vertical Slice
-- Alpha
-- Beta
-- Release
-- Update Schedule
-- QA
-- Testing
-- Deployment
-- Maintenance
-
-## Deliverables
-
-- Production roadmap
-- Release strategy
-- Live service plan
-
----
-
-# ✅ Completion Checklist
-
-| Phase | Status |
-|---------|:------:|
-| Phase 0 — Foundation | ⬜ |
-| Phase 1 — World Design | ⬜ |
-| Phase 2 — Player Journey | ⬜ |
-| Phase 3 — Cultivation System | ⬜ |
-| Phase 4 — Combat System | ⬜ |
-| Phase 5 — Social Systems | ⬜ |
-| Phase 6 — Economy & Monetization | ⬜ |
-| Phase 7 — UI / UX | ⬜ |
-| Phase 8 — Technical Architecture | ⬜ |
-| Phase 9 — Production Planning | ⬜ |
-
----
-
-# 📖 Development Rules
-
-Before starting a new phase:
-
-- Complete the previous phase's deliverables.
-- Update all related documentation.
-- Review for consistency with the Game Bible.
-- Commit changes to Git.
-- Record important design decisions in `DECISIONS.md`.
-- Update `CHANGELOG.md` if significant changes were made.
-
-> **Remember:** Documentation drives implementation. Every feature should exist in the Game Bible before it exists in Roblox Studio.
+> **Document Revision History**  
+> *v1.0.0* — Initial Early Publish Scope Blueprint established by Creative Director.

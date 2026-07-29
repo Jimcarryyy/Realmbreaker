@@ -1,192 +1,140 @@
-<div align="center">
+# Realmbreaker — Xianxia Action MMORPG
 
-# ⚔️ Realmbreaker
-
-### *"Cultivation is not the game. Cultivation unlocks the game."*
-
-A next-generation **Roblox Cultivation MMORPG** focused on meaningful progression, skill-based combat, immersive exploration, and player-driven experiences.
-
----
-
-![Status](https://img.shields.io/badge/Status-Pre--Production-blue)
-![Engine](https://img.shields.io/badge/Engine-Roblox%20Studio-red)
-![Language](https://img.shields.io/badge/Language-Luau-blue)
-![License](https://img.shields.io/badge/License-Private-lightgrey)
-
-</div>
+> **Official Game Design Bible & Technical Authority**  
+> *Target Platform:* Roblox (PC, Mobile, Console)  
+> *Genre:* Xianxia / Wuxia Cultivation Action MMORPG  
+> *Release Target:* Version 1.0 (Early Publish / DevEx Viable Baseline)  
+> *Language & Sync:* Luau Strict (`--!strict`) | Argon 2-Way Sync (VS Code)
 
 ---
 
-# 📖 Overview
+## 1. Executive Summary
 
-**Realmbreaker** is an ambitious Roblox MMORPG inspired by **Xianxia**, **Wuxia**, and modern action RPGs.
+**Realmbreaker** is an action-driven Xianxia/Wuxia MMORPG designed to break away from traditional "AFK clicker" cultivation simulators on Roblox. 
 
-Rather than treating cultivation as a simple stat-grinding mechanic, every breakthrough unlocks new gameplay opportunities, regions, combat mechanics, enemies, and social interactions.
+Instead of relying on artificial stat inflation, **Realmbreaker** anchors every tier of progression to **Mechanical Unlocks**—new spatial movement abilities, combat stances, tactical parrying buffers, environmental hazard access, and territorial competition.
 
-Players begin as ordinary mortals and gradually ascend toward becoming legendary cultivators through exploration, combat, cultivation, sects, world events, and meaningful progression.
-
----
-
-# 🎯 Vision
-
-Our goal is to create one of the highest-quality cultivation MMORPGs on Roblox.
-
-Every breakthrough should feel meaningful.
-
-Every battle should matter.
-
-Every player should have a reason to continue climbing toward immortality.
+> **Core Design Axiom:**  
+> *"A Foundation Establishment cultivator does not defeat a Qi Condensation cultivator simply because they have 10,000 HP vs 1,000 HP. They win because they possess Air Dashing, Qi Shielding, and superior tactical positioning."*
 
 ---
 
-# ⭐ Core Pillars
+## 2. The 4 Design Pillars
 
-- 🌱 Meaningful Cultivation
-- ⚔️ Skill-Based Combat
-- 🌍 Exploration & Discovery
-- 🏛️ Player-Driven Sects
-- 🎮 Premium UI / UX
-- 🤝 Social Gameplay
-- 🏆 Competitive PvP
-- 🐉 Challenging PvE
-- 💎 Fair Monetization
-- 🔄 Long-Term Replayability
+| Pillar | Principle | Gameplay Execution |
+| :--- | :--- | :--- |
+| **1. Purposeful Progression** | No meaningless numbers. | Advancing a realm unlocks physical mechanics (Air Dashing, Qi Shielding, Flight, Domain Stances) rather than inflated stats. |
+| **2. Interconnected World** | No isolated systems. | Alchemy requires herbs from dangerous PvP zones; crafting requires rare drops; breakthroughs require environmental Qi density. |
+| **3. Skill-Based Combat** | Strategy over pure stats. | Active 0.18s parries, animation-cancel dodging, stamina management, and posture breaks allow lower-realm players to outplay careless higher-realm players. |
+| **4. Ethical Monetization** | Respect the player. | Focus on convenience, time-efficiency, storage, and cosmetic status. No paywalls that break competitive PvP integrity. |
 
 ---
 
-# 🏗 Development Philosophy
+## 3. V1.0 Early Publish Scope Boundaries
 
-Realmbreaker follows one guiding principle:
+To ensure rapid time-to-market while delivering maximum replayability and DevEx monetization, feature scope is strictly governed for Version 1.0:
 
-> **Every system should unlock new gameplay, not simply increase numbers.**
-
-Features should strengthen one or more of the following:
-
-- Progression
-- Combat
-- Exploration
-- PvP
-- PvE
-- Social Interaction
-- Replayability
-
-If a feature does not improve the player experience, it should be redesigned or removed.
-
----
-
-# 📚 Documentation
-
-Project documentation is organized into a comprehensive **Game Bible**.
-
-```text
-docs/
-├── Core
-├── Game Design
-├── Business
-├── Technical
-└── Live Operations
+```
+[ Realm 0: Mortal Body ] ──► [ Realm 1: Qi Condensation ] ──► [ Realm 2: Foundation Est. ] ──► [ Realm 3: Core Formation ]
+    (Physical Combos)            (Qi Gauge & Ranged Blasts)      (Air Dash & Alchemy Crafting)       (Flight & Domain Stances)
 ```
 
-These documents define every aspect of the game's vision, systems, architecture, and long-term development.
+| Realm Tier | Realm Name | Key Gameplay Unlocks | Accessible World Zones |
+| :---: | :--- | :--- | :--- |
+| **0** | **Mortal Body** | Physical combos, stamina roll, martial stance selection. | Bamboo Leaf Village (Zone 1 Safe Area) |
+| **1** | **Qi Condensation** | Qi Pool, ranged Qi Projectiles, **Qi Sensing HUD [V]**. | Outer Sect Wilds (Zone 1) |
+| **2** | **Foundation Establishment** | **Air Dash [Q]**, **Qi Shielding [F]**, **Alchemy Crafting**. | Mistveil Forest (Zone 2 Miasma Area) |
+| **3** | **Core Formation** *(V1.0 Cap)* | **Flight / Levitation**, **Domain Stances [G]**, Sect Node Extraction. | Ancient Qi Caverns (Zone 2 Contested PvP) |
 
 ---
 
-# 🚀 Development Workflow
+## 4. Repository Directory Layout
 
-Every feature follows the same pipeline:
+The codebase follows a modular Service-Controller architecture synchronized live via **Argon** in VS Code:
 
-```text
-Idea
-   ↓
-Documentation
-   ↓
-Review
-   ↓
-Technical Design
-   ↓
-Implementation
-   ↓
-Testing
-   ↓
-Optimization
-   ↓
-Release
 ```
-
-Documentation is always completed before implementation.
-
----
-
-# 🛠 Technology Stack
-
-| Category | Technology |
-|----------|------------|
-| Engine | Roblox Studio |
-| Language | Luau |
-| Version Control | Git + GitHub |
-| Documentation | Markdown |
-| AI Assistance | ChatGPT + Google AI Studio |
-| IDE | Visual Studio Code |
-
----
-
-# 📂 Repository Structure
-
-```text
-Realmbreaker/
+src/
+├── ReplicatedFirst/            --> Preloading screens & initial splash UI
+├── ReplicatedStorage/          --> Shared client-server assets & logic
+│   └── Shared/
+│       ├── Config/             --> Central game configs (RealmsConfig, StancesConfig, AssetsConfig)
+│       ├── Network/            --> Remote communication bridges
+│       ├── Utils/              --> Utility library modules (Maid, Signal, Promise)
+│       └── Types/              --> Luau strict type definitions
 │
-├── docs/
-├── roblox/
-├── assets/
-├── concepts/
-├── references/
-├── tasks/
-├── changelog/
-└── README.md
+├── ServerScriptService/        --> Server-authoritative logic execution
+│   └── Server/
+│       ├── Boot/               --> ServerLoader.server.lua entry point
+│       ├── Services/           --> Authoritative Services (SaveService, CultivationService, CombatService)
+│       └── Components/         --> Physical world object behaviors (QiNodeComponent)
+│
+├── StarterPlayer/
+│   └── StarterPlayerScripts/
+│       └── Client/             --> Client-side Controllers & UI handlers
+│           ├── Boot/           --> ClientLoader.client.lua entry point
+│           ├── Controllers/     --> Controllers (UIController, CultivationController, CombatController)
+│           └── UI/             --> Declarative UI views & components
+│
+└── Workspace/                  --> World terrain, physical Qi nodes, & map geometry
 ```
 
 ---
 
-# 🚧 Current Status
+## 5. Developer Quickstart (VS Code + Argon Setup)
 
-**Phase:** Pre-Production
-
-Current objectives:
-
-- Complete the Game Bible
-- Finalize technical architecture
-- Design core gameplay systems
-- Build the foundational framework
-
----
-
-# 💰 Monetization Philosophy
-
-Realmbreaker will **never** sell player power.
-
-Monetization focuses on:
-
-- Cosmetics
-- Convenience
-- Personalization
-- Premium Membership
-- Battle Pass
-- Cosmetic Collections
-
-Player skill and progression should always determine success.
+1. **Clone the Repository:**
+   `git clone https://github.com/Jimcarryyy/Realmbreaker.git`
+2. **Open in VS Code:**
+   Open the `Realmbreaker` root directory in VS Code.
+3. **Start Argon 2-Way Sync:**
+   * Open Roblox Studio with a blank place or project map.
+   * In VS Code, open the Command Palette (`Ctrl + Shift + P`) and select **`Argon: Start`**.
+   * Argon will automatically build and synchronize the full `src/` directory tree into Roblox Studio.
+4. **Run Game:** Press **Play** in Roblox Studio to initialize server services and client controllers.
 
 ---
 
-# 🌌 Long-Term Goal
+## 6. Master Game Design Bible Index
 
-Create a living cultivation world where players grow from insignificant mortals into legendary cultivators through meaningful progression, strategic combat, exploration, and community-driven experiences.
+All detailed specifications live within the designated documentation modules:
 
-Realmbreaker is designed to evolve for years while remaining faithful to its core philosophy.
+### 📁 Game Design
+* [`docs/Game Design/00_PROJECT_OVERVIEW.md`](docs/Game%20Design/00_PROJECT_OVERVIEW.md) — High-Level Blueprint & Launch Scope
+* [`docs/Game Design/01_GDD.md`](docs/Game%20Design/01_GDD.md) — Master Game Design Document
+* [`docs/Game Design/02_WORLD.md`](docs/Game%20Design/02_WORLD.md) — World Architecture, Zones & Qi Density
+* [`docs/Game Design/03_CULTIVATION.md`](docs/Game%20Design/03_CULTIVATION.md) — 4 Launch Realms & Mechanical Progression
+* [`docs/Game Design/04_COMBAT.md`](docs/Game%20Design/04_COMBAT.md) — Fighting Game Combat Engine & Frame Data
+* [`docs/Game Design/05_PROGRESSION.md`](docs/Game%20Design/05_PROGRESSION.md) — Player Lifecycle & Leveling Curves
+* [`docs/Game Design/06_PVP.md`](docs/Game%20Design/06_PVP.md) — Contested Qi Veins, Infamy & Arena Duels
+* [`docs/Game Design/07_PVE.md`](docs/Game%20Design/07_PVE.md) — Boss AI Mechanics & `Ancient Sword Mystic Realm` Dungeon
+* [`docs/Game Design/08_UI_UX.md`](docs/Game%20Design/08_UI_UX.md) — HUD Architecture & Cross-Platform Controls
+* [`docs/Game Design/09_ECONOMY.md`](docs/Game%20Design/09_ECONOMY.md) — Player Trading, Alchemy Market & Inflation Sinks
+* [`docs/Game Design/11_ART_DIRECTION.md`](docs/Game%20Design/11_ART_DIRECTION.md) — Visual Identity, Lighting & Qi VFX Hierarchy
+* [`docs/Game Design/12_LORE.md`](docs/Game%20Design/12_LORE.md) — World Mythos, Sect Histories & Main Campaign
+* [`docs/Game Design/13_ROADMAP.md`](docs/Game%20Design/13_ROADMAP.md) — 15-Week Launch Timeline & V1.1–V1.3 Live Ops
+* [`docs/Game Design/15_GAME_IDENTITY.md`](docs/Game%20Design/15_GAME_IDENTITY.md) — Market Positioning & Competitive USPs
+* [`docs/Game Design/16_DESIGN_PRINCIPLES.md`](docs/Game%20Design/16_DESIGN_PRINCIPLES.md) — Core Axioms & Feature Evaluation Framework
+
+### 📁 Technical Design
+* [`docs/Technical Design/10_TECHNICAL_ARCHITECTURE.md`](docs/Technical%20Design/10_TECHNICAL_ARCHITECTURE.md) — Service-Controller Engine Architecture
+* [`docs/Technical Design/21_FOLDER_STRUCTURE.md`](docs/Technical%20Design/21_FOLDER_STRUCTURE.md) — Code Base Layout & Argon Migration
+* [`docs/Technical Design/22_DATABASE_DESIGN.md`](docs/Technical%20Design/22_DATABASE_DESIGN.md) — DataStore Schemas & Payload Limits
+* [`docs/Technical Design/23_NETWORK_ARCHITECTURE.md`](docs/Technical%20Design/23_NETWORK_ARCHITECTURE.md) — Lag Compensation & Hit Registration
+* [`docs/Technical Design/24_SAVE_SYSTEM.md`](docs/Technical%20Design/24_SAVE_SYSTEM.md) — ProfileService Session Locking & Anti-Dupe
+* [`docs/Technical Design/25_ASSET_PIPELINE.md`](docs/Technical%20Design/25_ASSET_PIPELINE.md) — 3D Mesh Budgets, Animation Markers & Audio
+* [`docs/Technical Design/26_CODING_STANDARD.md`](docs/Technical%20Design/26_CODING_STANDARD.md) — Strict Luau Style Guide & Garbage Collection
+
+### 📁 Monetization & Live Operations
+* [`docs/Monetization.md/17 Monetization.md`](docs/Monetization.md/17%20Monetization.md) — Revenue Strategy & DevEx Target Catalog
+* [`docs/Monetization.md/20 Retention.md`](docs/Monetization.md/20%20Retention.md) — Retention Engine & 4-Stage Lifecycle
+* [`docs/Live Operations/28_BALANCING_PHILOSOPHY.md`](docs/Live%20Operations/28_BALANCING_PHILOSOPHY.md) — Stat Caps & Cross-Realm Damage Scaling
+* [`docs/Live Operations/29_COMMUNITY_MANAGEMENT.md`](docs/Live%20Operations/29_COMMUNITY_MANAGEMENT.md) — Moderation Matrix & Anti-Exploit Policy
+* [`docs/Live Operations/30_LIVE_EVENTS.md`](docs/Live%20Operations/30_LIVE_EVENTS.md) — Automated Qi Surges & Seasonal Festivals
+* [`docs/Live Operations/31_CONTENT_EXPANSION.md`](docs/Live%20Operations/31_CONTENT_EXPANSION.md) — 5-Step Realm Addition Pipeline
+* [`docs/Live Operations/32_PATCH_NOTES.md`](docs/Live%20Operations/32_PATCH_NOTES.md) — Semantic Versioning & Release Logs
+* [`docs/Live Operations/33_PLAYER_PSYCHOLOGY.md`](docs/Live%20Operations/33_PLAYER_PSYCHOLOGY.md) — Behavioral Archetypes & Loss-Aversion Safeguards
 
 ---
 
-<div align="center">
-
-### ⚡ *"The journey to immortality begins with a single breakthrough."*
-
-</div>
+> **Document Revision History**  
+> *v1.0.0* — Master Root README finalized and approved by Creative Director & Lead Software Architect.
