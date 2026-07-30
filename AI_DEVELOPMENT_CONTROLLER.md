@@ -63,13 +63,20 @@ Development is broken into 5 sequential implementation phases:
 * [x] **Overhead Billboards:** Fixed character spawning bottlenecks; overhead titles and hp bars now dynamically cache and display the player's real-time progression immediately on character spawning.
 * [x] **Replication Engine:** Integrated server-side `ReplicaService` and client-side `ReplicaController` (with dependencies `MadworkMaid`, `MadworkScriptSignal`, and `RateLimiter` moved into `ReplicatedStorage`) to automate and secure player data synchronization.
 
-### 3.2 Currently In Progress (PHASE 1 - TASK 1.4)
-* [ ] **Node Components & World Zone Detection:** Building `HerbNodeComponent.lua` & `QiNodeComponent.lua` in `Server/Components/` for world harvesting interactions, and `WorldController.lua` for zone boundary detection and visual triggers.
+### 3.2 Currently In Progress (PHASE 1 - TASK 1.5: UI Panel & Transition Flow)
+* [ ] **Modular UI Panels & Transition Toggles:** Implementing the newly designed UI panels (Inventory, Stance Mastery, Breakthroughs, Sect) using your custom image backgrounds. Building the top-right horizontal button bar to toggle these menus on and off using smooth UI tweens.
+
+> **⚠️ Required Raw Files to Read for Current Task:**
+> * [`UIController.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua) (The main target script to refactor and implement the new panel layouts)
+> * [`RealmsConfig.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/RealmsConfig.lua) (Needed to map stats and requirements inside your panel visuals)
+> * [`22_DATABASE_DESIGN.md`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/22_DATABASE_DESIGN.md) (Needed to ensure your inventory slots and Sect panels map to correct database keys)
+> * [`24_SAVE_SYSTEM.md`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/24_SAVE_SYSTEM.md) (Needed to coordinate client-to-server UI requests)
 
 ### 3.3 Next Priority Queue
-1. Build `HerbNodeComponent.lua` & `QiNodeComponent.lua` in [`src/ServerScriptService/Server/Components/`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Components/) (or matching directory) for world harvesting interactions.
-2. Build `WorldController.lua` for zone boundary detection and ambient fog/miasma visual alerts.
-3. Initialize the Fighting-Game Combat Engine foundations (`CombatService.lua` on the server and `CombatController.lua` on the client) and bind hit registration.
+1. Build the modular menu shortcut bar in [`UIController.lua`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua) with your uploaded shortcut icons.
+2. Code the pop-up panel frames (Inventory, Breakthrough, Stance, Sect) and toggle them via `TweenService` when clicking the respective buttons.
+3. Build `HerbNodeComponent.lua` & `QiNodeComponent.lua` in [`src/ServerScriptService/Server/Components/`](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Components/) for world harvesting interactions (deferred).
+4. Build `WorldController.lua` for zone boundary detection and visual triggers (deferred).
 
 ---
 
@@ -109,5 +116,5 @@ When working on specific systems, refer to these primary design authority files:
 
 ---
 
-> **Document Version:** v1.2.0  
+> **Document Version:** v1.3.0  
 > **Maintained By:** Lead Game Designer & Technical Architect
