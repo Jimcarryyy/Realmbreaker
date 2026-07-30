@@ -112,3 +112,52 @@ Realmbreaker/
 │               └── Controllers/        # UIController, InventoryController, CombatController, QiSenseController, WorldController
 ├── default.project.json                # Rojo Synchronization Config
 └── REALMBREAKER.md                     # Master Architecture & Development Brief
+
+
+## 🔗 8. Complete AI Documentation & Raw GitHub Context Links
+
+Use the raw links below for direct AI browsing and full context retrieval across all development phases:
+
+### 🎮 Game Design
+* **Game Design README:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/README.md
+* **00 Project Overview:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/00_PROJECT_OVERVIEW.md
+* **01 Game Design Document (GDD):** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/01_GDD.md
+* **02 World Design:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/02_WORLD.md
+* **03 Cultivation System:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/03_CULTIVATION.md
+* **04 Combat System:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/04_COMBAT.md
+* **05 Progression System:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/05_PROGRESSION.md
+* **06 PvP Mechanics:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/06_PVP.md
+* **07 PvE Mechanics:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/07_PVE.md
+* **08 UI/UX Design:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/08_UI_UX.md
+* **09 Economy System:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/09_ECONOMY.md
+* **10 Technical Architecture:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/10_TECHNICAL_ARCHITECTURE.md
+* **11 Art Direction:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/11_ART_DIRECTION.md
+* **12 Lore & Narrative:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/12_LORE.md
+* **13 Development Roadmap:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/13_ROADMAP.md
+* **14 Coding Standards:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/14_CODING_STANDARD.md
+* **15 Game Identity:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/15_GAME_IDENTITY.md
+* **16 Design Principles:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/16_DESIGN_PRINCIPLES.md
+* **Terrain Implementation:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Game%20Design/TERRAIN_IMPLEMENTATION.md
+
+### 💎 Monetization & Live Operations
+* **17 Monetization Strategy:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Monetization.md/17%20Monetization.md
+* **18 Live Services:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Monetization.md/18%20Live%20Service.md
+* **19 Game Analytics:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Monetization.md/19%20Analytics.md
+* **20 Player Retention:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Monetization.md/20%20Retention.md
+
+### 🛠️ Technical Design
+* **21 Folder Structure:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/21_FOLDER_STRUCTURE.md
+* **22 Database Design:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/22_DATABASE_DESIGN.md
+* **23 Network Architecture:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/23_NETWORK_ARCHITECTURE.md
+* **24 Save System:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/24_SAVE_SYSTEM.md
+* **25 Asset Pipeline:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/25_ASSET_PIPELINE.md
+* **26 Technical Coding Standard:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/26_CODING_STANDARD.md
+* **27 Naming Convention:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Technical%20Design/27_NAMING_CONVENTION.md
+
+### 📡 Live Operations & Management
+* **28 Balancing Philosophy:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/28_BALANCING_PHILOSOPHY.md
+* **29 Community Management:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/29_COMMUNITY_MANAGEMENT.md
+* **30 Live Events:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/30_LIVE_EVENTS.md
+* **31 Content Expansion:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/31_CONTENT_EXPANSION.md
+* **32 Patch Notes Format:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/32_PATCH_NOTES.md
+* **33 Player Psychology:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/33_PLAYER_PSYCHOLOGY.md
