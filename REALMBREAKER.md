@@ -12,7 +12,7 @@
 1. **Skill-Based Combat over AFK Bloat:** Mechanical mastery over passive auto-clicking. Progression is driven by frame-precise parrying, stamina management, martial stances, and cultivation breakthroughs.
 2. **Strict Anti-Stat-Bloat Scale:** Health is capped at **100 HP to 370 HP max** across launch realms (V1.0). Stat bloat notation (`3.8K`, `10M`) is strictly forbidden; all numbers are exact and unrounded (`3800 / 4000 Spirit Qi`).
 3. **Server-Authoritative Validation:** Damage calculation, parry windows, i-frame dodges, and posture staggers are validated strictly on the server to prevent exploits.
-4. **Wuxia/Xianxia Aesthetic:** Minimalist Dark Slate Obsidian (`#12161A`), Imperial Gold (`#D4AF37`), Weathered Bronze (`#2A3A35`), and Spirit Jade filigree (`#3A7869`).
+4. **Modern Roblox Xianxia Aesthetic:** Clean, soft-glass Obsidian (`#0D1117`), Spirit Jade glowing accents (`#4AE3B5`), Imperial Gold realm highlights (`#FFD700`), smooth rounded geometry (`UICorner`), and soft friendly typography (`FredokaOne` & `GothamBold`) for maximum clarity and all-ages appeal.
 
 ---
 
@@ -27,9 +27,30 @@ Progression follows 4 Major Realms, each with 9 Minor Orders (1st through 9th Or
 
 ---
 
-## 🎨 3. UI/UX Architecture & 2D Asset Registry
+## 🎨 3. UI/UX Architecture & Asset Registry
 
-All 8 UI panels and HUD components use dynamic background templates (`ImageLabel`) with **hollow, unfilled track grooves** so Luau code (`ScrollingFrame`, `UIGridLayout`, `TweenService`) can animate fills and content dynamically without visual clipping.
+All UI elements use flat glassmorphic containers (`Frame`, `CanvasGroup`) with smooth rounded corners (`UICorner`: 10px - 16px) and subtle glowing borders (`UIStroke`: 1.5px). Dynamic bars (Health, Stamina, Qi, Posture) use `ClipsDescendants = true` with smooth `TweenService` fills to eliminate visual clipping.
+
+### A. In-Game HUD & Screen Layout
+* **1. Overhead Status (`BillboardGui` - Attached to Character Head):**
+  * Displays above all players and NPCs (3.2 studs offset).
+  * Holds **Realm Title Badge** (`✨ [ Qi Condensation - Peak ] ✨`), Player Nameplate, Compact Health Bar, and dynamic Posture Poise meter.
+* **2. Vitals Widget (`VitalityCluster` - Bottom-Left, `240x95` px):**
+  * Compact rounded glass card holding 3 slim pill progress bars (**Health**, **Stamina**, **Spirit Qi**). Posture gauge dynamically animates only when blocking or receiving posture damage.
+* **3. Action Skill Hotbar (`HotbarCluster` - Bottom-Center, `340x50` px):**
+  * Floating row of 6 skill tiles (`[1]`, `[2]`, `[3]`, `[Q]` Dash, `[F]` Parry, `[V]` Qi Sense) with clear keybind badges (`FredokaOne` font) and radial cooldown overlays.
+* **4. Navigation Pill Bar (`TopRightNav` - Top-Right, `220x35` px):**
+  * Minimalist horizontal pill menu containing clean toggle icons for Menu, Character, Inventory, Skills, Map, and Settings. Keeps top-center screen completely clear for combat FX and world view.
+* **5. Target Lock Indicator (`TargetOverlay` - Dynamic In-World):**
+  * Dynamic target frame that attaches directly above locked-on enemies showing health, posture, and active stance buffs instead of blocking top-center screen space.
+
+### B. Core Navigation Modals (Center Scale: `0.60, 0` | AspectRatio: `1.778`)
+* **Modal 1 (`CharacterModal` - `[C]`):** Tabbed window containing 3D avatar viewport, equipped paperdoll gear, base attributes, cultivation realm rank, breakthrough checklist, and Heavenly Tribulation initiation button.
+* **Modal 2 (`InventoryModal` - `[B]` / `[I]`):** Item grid container (`ScrollingFrame`) with category filters (`All`, `Weapons`, `Pills`, `Materials`), drag-and-drop quickslot binding, and right-hand Item Inspector panel.
+* **Modal 3 (`SkillTreeModal` - `[K]`):** Martial stance node canvas grid, mastery proficiency progress bar, and skill upgrade inspector.
+* **Modal 4 (`AlchemyModal` - `[L]`):** Central cauldron interface with recipe book, 3 herb docking slots, heat balance slider, and brewing progress gauge.
+* **Modal 5 (`WorldMapModal` - `[M]`):** Widescreen 2D interactive zone map with contested Qi artery density markers (`+3.0x` density) and region status sidebar.
+* **Modal 6 (`SettingsModal` - `[O]`):** Keybind remapping, graphics particle toggles, UI scaling, and audio sliders.
 
 ### Panel Registry & Screen Placement:
 * **Panel 1 (`TopNavigationFrame`):** Top-center banner (`850x60` px). Renders Roblox headshot thumbnail (`GetUserThumbnailAsync`), player display name, realm rank, 6 navigation tab buttons, and live currency counters (**Spirit Stones** and **Sect Tokens**).
