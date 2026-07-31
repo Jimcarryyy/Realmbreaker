@@ -27,44 +27,86 @@ Progression follows 4 Major Realms, each with 9 Minor Orders (1st through 9th Or
 
 ---
 
-## 🎨 3. UI/UX Architecture & Asset Registry
+## 3. UI/UX System Architecture & Asset Registry
 
-All UI elements use flat glassmorphic containers (`Frame`, `CanvasGroup`) with smooth rounded corners (`UICorner`: 10px - 16px) and subtle glowing borders (`UIStroke`: 1.5px). Dynamic bars (Health, Stamina, Qi, Posture) use `ClipsDescendants = true` with smooth `TweenService` fills to eliminate visual clipping.
+### A. Master 37-Asset Directory Structure
+All 2D UI asset shells, icons, skills, map pins, and currencies are organized into 6 standardized subfolders under `ReplicatedStorage.Shared.Assets.UI`:
 
-### A. In-Game HUD & Screen Layout
-* **1. Overhead Status (`BillboardGui` - Attached to Character Head):**
-  * Displays above all players and NPCs (3.2 studs offset).
-  * Holds **Realm Title Badge** (`✨ [ Qi Condensation - Peak ] ✨`), Player Nameplate, Compact Health Bar, and dynamic Posture Poise meter.
-* **2. Vitals Widget (`VitalityCluster` - Bottom-Left, `240x95` px):**
-  * Compact rounded glass card holding 3 slim pill progress bars (**Health**, **Stamina**, **Spirit Qi**). Posture gauge dynamically animates only when blocking or receiving posture damage.
-* **3. Action Skill Hotbar (`HotbarCluster` - Bottom-Center, `340x50` px):**
-  * Floating row of 6 skill tiles (`[1]`, `[2]`, `[3]`, `[Q]` Dash, `[F]` Parry, `[V]` Qi Sense) with clear keybind badges (`FredokaOne` font) and radial cooldown overlays.
-* **4. Navigation Pill Bar (`TopRightNav` - Top-Right, `220x35` px):**
-  * Minimalist horizontal pill menu containing clean toggle icons for Menu, Character, Inventory, Skills, Map, and Settings. Keeps top-center screen completely clear for combat FX and world view.
-* **5. Target Lock Indicator (`TargetOverlay` - Dynamic In-World):**
-  * Dynamic target frame that attaches directly above locked-on enemies showing health, posture, and active stance buffs instead of blocking top-center screen space.
+* **`Panels/` (7 Shells):** `Panel1_AlchemyPanelShell` (ID: `84276737641585`), `Panel2_InventoryPanelShell` (ID: `123841032076360`), `Panel3_CharacterPanelShell` (ID: `86012045244236`), `Panel4_SkillsPanelShell` (ID: `107226547729026`), `Panel5_MapQuestPanelShell` (ID: `131488945229260`), `SettingsPanel_SettingsShell` (ID: `127613233097676`), `DialogueFrame_DialogueShell` (ID: `79576725327950`).
+* **`HUD/` (6 Overlays):** `Panel6_CombatHUDOverlayShell` (ID: `110381792485649`), `TopNavigationFrame_TopNavShell` (ID: `122415586898423`), `BossHealthBarShell_BossBarShell` (ID: `134065637826617`), `TargetFrame_TargetFrameShell` (ID: `112564321533982`), `QuestTrackerWidget_QuestTrackerShell` (ID: `131670772422654`), `TutorialHintBanner_TutorialBannerShell` (ID: `92283672177848`).
+* **`Templates/` (3 Controls):** `Panel7_ModularSlotTemplate` (ID: `78377208477701`), `AssetA_CloseButton` (ID: `113605743209527`), `AssetB_PrimaryActionButton` (ID: `139131406784954`).
+* **`Items/` (11 Items & Currencies):** `Item_JadeSpiritBlade` (ID: `102309054006524`), `Item_InitiateRobe` (ID: `110436079253993`), `Item_QiGatheringRing` (ID: `138394758283116`), `Item_SpiritHerb` (ID: `90866060513740`), `Item_DragonBloodFlower` (ID: `122623665914573`), `Item_FrostLotus` (ID: `76826036711416`), `Item_QiGatheringPill` (ID: `87497192233934`), `Item_VitalityPill` (ID: `112990324747062`), `Item_SkillManualScroll` (ID: `78648040440784`), `Currency_SpiritStones` (ID: `79573528943998`), `Currency_SectTokens` (ID: `75450655299271`).
+* **`Skills/` (6 Abilities):** `Skill_QiDash` (ID: `137358656097564`), `Skill_Parry` (ID: `129890118103154`), `Skill_QiSense` (ID: `128617837655590`), `Skill_FlowingWaterSlash` (ID: `95178149840421`), `Skill_ThunderPalmStrike` (ID: `139060977395032`), `Skill_SpiritBlast` (ID: `71547589196383`).
+* **`Icons/` (4 Pins):** `MapPin_PlayerArrow` (ID: `113587700256481`), `MapPin_SectTemple` (ID: `106421270342595`), `MapPin_QiNodeCrystal` (ID: `115576917375343`), `MapPin_QuestExclamation` (ID: `120838027568021`).
 
-### B. Core Navigation Modals (Center Scale: `0.60, 0` | AspectRatio: `1.778`)
-* **Modal 1 (`CharacterModal` - `[C]`):** Tabbed window containing 3D avatar viewport, equipped paperdoll gear, base attributes, cultivation realm rank, breakthrough checklist, and Heavenly Tribulation initiation button.
-* **Modal 2 (`InventoryModal` - `[B]` / `[I]`):** Item grid container (`ScrollingFrame`) with category filters (`All`, `Weapons`, `Pills`, `Materials`), drag-and-drop quickslot binding, and right-hand Item Inspector panel.
-* **Modal 3 (`SkillTreeModal` - `[K]`):** Martial stance node canvas grid, mastery proficiency progress bar, and skill upgrade inspector.
-* **Modal 4 (`AlchemyModal` - `[L]`):** Central cauldron interface with recipe book, 3 herb docking slots, heat balance slider, and brewing progress gauge.
-* **Modal 5 (`WorldMapModal` - `[M]`):** Widescreen 2D interactive zone map with contested Qi artery density markers (`+3.0x` density) and region status sidebar.
-* **Modal 6 (`SettingsModal` - `[O]`):** Keybind remapping, graphics particle toggles, UI scaling, and audio sliders.
+### B. AssetRegistry Configuration (`ReplicatedStorage.Shared.Configs.AssetRegistry`)
+Central configuration module mapping human-readable keys to real uploaded Roblox Asset IDs:
 
-### Panel Registry & Screen Placement:
-* **Panel 1 (`TopNavigationFrame`):** Top-center banner (`850x60` px). Renders Roblox headshot thumbnail (`GetUserThumbnailAsync`), player display name, realm rank, 6 navigation tab buttons, and live currency counters (**Spirit Stones** and **Sect Tokens**).
-* **Panel 2 (`CombatHUDGui` Slices):** In-game HUD overlay:
-  * **`VitalityCluster`** (Bottom-Left, `280x110` px): Holds 4 pill-shaped bars (**Health**, **Posture**, **Stamina**, **Qi**) using `UICorner` (`UDim.new(1, 0)`) and `ClipsDescendants = true`.
-  * **`HotbarCluster`** (Bottom-Center, `320x55` px): Holds 6 action slots (`[F] Parry`, `[Q] Dash`, `[V] Qi Sense`, `[1]`, `[2]`, `[3]`).
-  * **`TargetFrame`** (Top-Center, `350x50` px): Enemy HP and Posture gauge tracks.
-  * **`MiasmaHazard`** (Top-Right, `180x35` px): Environmental toxicity bar.
-* **Panel 3 (`CharacterPanel` - `[C]`):** Center modal (`0.65, 0` scale + `1.778` AspectRatio). 3D viewport, base stats, breakthrough checklist, and Heavenly Tribulation button.
-* **Panel 4 (`InventoryPanel` - `[B]` / `[I]`):** Center modal. Paperdoll gear slots, center item grid container (`ItemGridContainer` + `ScrollingFrame`), category filter tabs, right Item Inspector.
-* **Panel 5 (`SkillsPanel` - `[K]`):** Center modal. Martial stance selector, node canvas grid, proficiency progress bar, skill upgrade inspector.
-* **Panel 6 (`AlchemyPanel`):** Center modal. Recipe book list, central cauldron with 3 herb docking slots, temperature slider, and brewing progress track.
-* **Panel 7 (`WorldMapPanel` - `[N]`):** Center modal. Widescreen 2D interactive zone map, contested Qi artery markers (`+3.0x` density), and sector status sidebar.
-* **Panel 8 (`SettingsPanel` - `[O]`):** Center modal. Keybind remapping, graphics particle toggles, and audio volume sliders.
+```lua
+--!strict
+local AssetRegistry = {}
+
+AssetRegistry.Panels = {
+	Alchemy = "rbxassetid://84276737641585",
+	Inventory = "rbxassetid://123841032076360",
+	Character = "rbxassetid://86012045244236",
+	Skills = "rbxassetid://107226547729026",
+	WorldMap = "rbxassetid://131488945229260",
+	Settings = "rbxassetid://127613233097676",
+	Dialogue = "rbxassetid://79576725327950",
+}
+
+AssetRegistry.HUD = {
+	CombatOverlay = "rbxassetid://110381792485649",
+	TopNavigation = "rbxassetid://122415586898423",
+	BossHealthBar = "rbxassetid://134065637826617",
+	TargetFrame = "rbxassetid://112564321533982",
+	QuestTracker = "rbxassetid://131670772422654",
+	TutorialBanner = "rbxassetid://92283672177848",
+}
+
+AssetRegistry.Templates = {
+	ModularSlot = "rbxassetid://78377208477701",
+	CloseButton = "rbxassetid://113605743209527",
+	PrimaryActionButton = "rbxassetid://139131406784954",
+}
+
+AssetRegistry.Items = {
+	JadeSpiritBlade = "rbxassetid://102309054006524",
+	InitiateRobe = "rbxassetid://110436079253993",
+	QiGatheringRing = "rbxassetid://138394758283116",
+	SpiritHerb = "rbxassetid://90866060513740",
+	DragonBloodFlower = "rbxassetid://122623665914573",
+	FrostLotus = "rbxassetid://76826036711416",
+	QiGatheringPill = "rbxassetid://87497192233934",
+	VitalityPill = "rbxassetid://112990324747062",
+	SkillManualScroll = "rbxassetid://78648040440784",
+	SpiritStones = "rbxassetid://79573528943998",
+	SectTokens = "rbxassetid://75450655299271",
+}
+
+AssetRegistry.Skills = {
+	QiDash = "rbxassetid://137358656097564",
+	Parry = "rbxassetid://129890118103154",
+	QiSense = "rbxassetid://128617837655590",
+	FlowingWaterSlash = "rbxassetid://95178149840421",
+	ThunderPalmStrike = "rbxassetid://139060977395032",
+	SpiritBlast = "rbxassetid://71547589196383",
+}
+
+AssetRegistry.Icons = {
+	PlayerArrow = "rbxassetid://113587700256481",
+	SectTemple = "rbxassetid://106421270342595",
+	QiNodeCrystal = "rbxassetid://115576917375343",
+	QuestExclamation = "rbxassetid://120838027568021",
+}
+
+return AssetRegistry
+
+
+C. Overhead World-Space Display Rules (OverheadBillboardGui)
+Player Overhead: Renders Player Display Name, Sect Tag [Jade Cloud Sect], Color-Coded Realm Rank [Qi Condensation - Stage 4], and a dynamic mini-HP/Posture bar that fades in during active combat.
+Parenting: Character.Head (MaxDistance = 80 studs, AlwaysOnTop = false).
 
 ---
 

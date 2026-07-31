@@ -144,5 +144,38 @@ The cultivation state is stored on the server via ProfileService to prevent clie
 
 ---
 
+```markdown
+## Overhead Displays & Onboarding Sequence
+
+### 1. 3D Overhead World Display (`OverheadBillboardGui`)
+Cultivation status renders in 3D space attached to `Character.Head`:
+* Display Name & Sect Tag: `[Jade Cloud Sect] Aethelgard`
+* Realm Title Glow: `[Qi Condensation - Stage 4]` (Cyan / Gold / Purple glow)
+* Mini Combat Vitals: Fades in during combat; fades out 5s after exiting combat. (`MaxDistance = 80 studs`).
+
+### 2. New Player Tutorial Onboarding (`[Quest: First Steps]`)
+1. **Wake Up:** Banner (`92283672177848`) prompts `[PRESS C TO INSPECT REALM]`.
+2. **Elder Lin:** Interact using **`DialogueFrame`** (`79576725327950`).
+3. **Gathering:** Activate `[V] Qi Sense` (`128617837655590`) to locate 3 *Spirit Herbs*.
+4. **Refining:** Use **`Panel1 AlchemyPanel`** (`84276737641585`) at the Cauldron to refine a *Qi Gathering Pill*.
+5. **Breakthrough:** Consume the pill, Meditate to achieve **Qi Condensation Stage 1**, and test active skills against a Training Dummy using `[1] Flowing Water Slash`.
+5️⃣ File: docs/Game Design/07_PVE.md
+Path: docs/Game Design/07_PVE.md
+📍 Action:
+Open 07_PVE.md. Do NOT touch Section 6 (## 6. System Interconnections) or existing threat tables. Simply update or append under ## Target Health Bar Architecture:
+code
+Markdown
+## Target Health Bar Architecture
+
+### 1. Generic Mobs & Wild Beasts
+* Rendered via a 3D Overhead `BillboardGui` floating directly above the mob's head (`MaxDistance = 60 studs`).
+* Displays compact HP & Posture tracks. Fades out when out of combat aggro range.
+
+### 2. Major & Sect Bosses (*Shadow Beast*)
+* Triggers a widescreen top-center overlay using **`BossHealthBarShell`** (`rbxassetid://134065637826617`).
+* Features dual-track gauges: **Boss Health** (Red) + **Posture Stun Rail** (Gold).
+* Displays phase notch dividers (Phase 1, Phase 2, Phase 3).
+* Top navigation banner (`rbxassetid://122415586898423`) slides up out of view during boss encounters.
+
 > **Document Revision History**  
 > *v1.0.0* — Document expanded for V1.0 Early Publish standard by Lead Systems Designer.

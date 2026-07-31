@@ -117,5 +117,27 @@ To maintain high FPS on mobile and console platforms while preserving visual fid
 
 ---
 
+## Milestone 1 Level Design & Rescaling Standards
+
+### Zone Elevations & Workspace Hierarchy
+```text
+Workspace/
+└── World/
+    ├── Zones/
+    │   ├── Zone1_AzureCloudSect/ (Y = 250)
+    │   └── Zone2_MiasmaBambooForest/ (Y = 0)
+    ├── Interconnections/
+    │   └── SkywardBorderBridge/ (Y = 250 to 0)
+    └── Triggers/
+        ├── Zone1_SafeZoneTrigger (Part)
+        └── Zone2_MiasmaZoneTrigger (Part)
+
+Architectural Rescaling Metrics
+To match standard Roblox R15 character scale (5 studs tall):
+Stair Step Height (Rise): 0.6 studs (allows smooth walking without hopping)
+Stair Step Depth (Tread): 2.0 studs
+Doorway Height: 8.0 to 10.0 studs
+Command Bar Non-Destructive Scaling: Model:ScaleTo(scaleFactor) is used to scale master map models (Zone1_MasterMap) non-destructively relative to a central pivot.
+
 > **Document Revision History**  
 > *v1.0.0* — World architecture and zone specifications approved by Lead World Designer.

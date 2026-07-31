@@ -24,24 +24,60 @@
 
 ---
 
-## 1. Design Philosophy, Core Principles & Project Mantra
+---
+```markdown
+## 1. Master 37-Asset Registry (Populated Roblox Asset IDs)
 
-*Realmbreaker*’s UI bridges classical Xianxia spiritual craftsmanship with modern Roblox usability (inspired by top-tier Roblox experiences like *Blox Fruits*, *Fisch*, and *Grow a Garden*). 
-
-The interface avoids cold metallic frames, 3D bevels, glossy glass, and neon anime clutter in favor of **soft 2D vector satin panels, dark slate-blue containers, muted jade accents, restrained gold cloud filigree, and layered depth**.
-
-### 🌟 The Project UI Mantra
-> *"If a player hides all icons and text, the remaining frame should still look like an authentic cultivation artifact. If all decorations are removed, the interface should still be immediately usable."*
-
-### 📌 8 Non-Negotiable Core Principles
-1. **World First:** The game world remains the primary focus. UI supports gameplay and never dominates the screen.
-2. **Handcrafted, Not Mechanical:** Every panel resembles a physical cultivation object rather than digital software or sci-fi windows.
-3. **Simple Before Decorative:** High-contrast readability always takes priority over ornamentation.
-4. **Consistent Identity:** All menus share identical material colors, gold line weights, corner filigree style, and sharp 90° outer borders.
-5. **Friendly Roblox Feel:** Interfaces feel soft, tactile, approachable, and spacious—avoiding traditional MMORPG clutter.
-6. **Depth Through Layering:** Uses recessed surfaces, dark satin fills, and clean framing instead of heavy gradients or metallic bevels.
-7. **Purposeful Decoration:** Gold cloud filigree and jade accents act strictly as corner framing, staying **100% inside** the bounding frame.
-8. **Designed for Growth:** Panels are **pure empty background shells**, allowing dynamic content to expand seamlessly via code.
+```text
+ReplicatedStorage/Shared/Assets/UI/
+├── 📁 Panels/ (7 Widescreen Modal Shells)
+│   ├── Panel1_AlchemyPanelShell.png         (rbxassetid://84276737641585)
+│   ├── Panel2_InventoryPanelShell.png       (rbxassetid://123841032076360)
+│   ├── Panel3_CharacterPanelShell.png       (rbxassetid://86012045244236)
+│   ├── Panel4_SkillsPanelShell.png          (rbxassetid://107226547729026)
+│   ├── Panel5_MapQuestPanelShell.png        (rbxassetid://131488945229260)
+│   ├── SettingsPanel_SettingsShell.png      (rbxassetid://127613233097676)
+│   └── DialogueFrame_DialogueShell.png      (rbxassetid://79576725327950)
+│
+├── 📁 HUD/ (6 On-Screen Overlays & Banners)
+│   ├── Panel6_CombatHUDOverlayShell.png     (rbxassetid://110381792485649)
+│   ├── TopNavigationFrame_TopNavShell.png   (rbxassetid://122415586898423)
+│   ├── BossHealthBarShell_BossBarShell.png  (rbxassetid://134065637826617)
+│   ├── TargetFrame_TargetFrameShell.png     (rbxassetid://112564321533982)
+│   ├── QuestTrackerWidget_QuestTrackerShell.png (rbxassetid://131670772422654)
+│   └── TutorialHintBanner_TutorialBannerShell.png (rbxassetid://92283672177848)
+│
+├── 📁 Templates/ (3 Reusable Controls & Buttons)
+│   ├── Panel7_ModularSlotTemplate.png       (rbxassetid://78377208477701)
+│   ├── AssetA_CloseButton.png               (rbxassetid://113605743209527)
+│   └── AssetB_PrimaryActionButton.png       (rbxassetid://139131406784954)
+│
+├── 📁 Items/ (11 Inventory Items, Pills, Herbs & Currencies)
+│   ├── Item_JadeSpiritBlade.png             (rbxassetid://102309054006524)
+│   ├── Item_InitiateRobe.png                (rbxassetid://110436079253993)
+│   ├── Item_QiGatheringRing.png             (rbxassetid://138394758283116)
+│   ├── Item_SpiritHerb.png                  (rbxassetid://90866060513740)
+│   ├── Item_DragonBloodFlower.png           (rbxassetid://122623665914573)
+│   ├── Item_FrostLotus.png                  (rbxassetid://76826036711416)
+│   ├── Item_QiGatheringPill.png             (rbxassetid://87497192233934)
+│   ├── Item_VitalityPill.png                (rbxassetid://112990324747062)
+│   ├── Item_SkillManualScroll.png           (rbxassetid://78648040440784)
+│   ├── Currency_SpiritStones.png            (rbxassetid://79573528943998)
+│   └── Currency_SectTokens.png              (rbxassetid://75450655299271)
+│
+├── 📁 Skills/ (6 Action Hotbar Ability Icons)
+│   ├── Skill_QiDash.png                     (rbxassetid://137358656097564)
+│   ├── Skill_Parry.png                      (rbxassetid://129890118103154)
+│   ├── Skill_QiSense.png                    (rbxassetid://128617837655590)
+│   ├── Skill_FlowingWaterSlash.png          (rbxassetid://95178149840421)
+│   ├── Skill_ThunderPalmStrike.png          (rbxassetid://139060977395032)
+│   └── Skill_SpiritBlast.png                (rbxassetid://71547589196383)
+│
+└── 📁 Icons/ (4 Individual Map Pins)
+    ├── MapPin_PlayerArrow.png               (rbxassetid://113587700256481)
+    ├── MapPin_SectTemple.png                (rbxassetid://106421270342595)
+    ├── MapPin_QiNodeCrystal.png             (rbxassetid://115576917375343)
+    └── MapPin_QuestExclamation.png          (rbxassetid://120838027568021)
 
 ---
 
@@ -121,22 +157,16 @@ To eliminate UI fatigue and ensure combat clarity, the interface is divided into
 
 ---
 
-## 5. Master Approved UI Asset Kit Registry
+```markdown
+### Master 37-Asset Directory Mapping
+All 2D UI graphic assets are categorized across 6 subfolders under `ReplicatedStorage.Shared.Assets.UI`:
 
-The UI kit consists of **7 Core Shell Assets** plus 3 Small Control Assets, all generated on 16:9 / 1:1 solid black backgrounds with wide margins:
-
-| Asset File Name | Technical ID | Aspect Ratio | Description |
-| :--- | :--- | :--- | :--- |
-| **`Panel1 AlchemyPanelShell.png`** | `Panel1_AlchemyPanelShell` | `16:9` | Dark slate table shell with top ingredient channel, central circular work ring, and bottom slider outline. |
-| **`Panel2 InventoryPanelShell.png`** | `Panel2_InventoryPanelShell` | `16:9` | Dual-container shell. Left card for gear preview; right empty slate canvas for scrolling grid. |
-| **`Panel3 CharacterPanelShell.png`** | `Panel3_CharacterPanelShell` | `16:9` | Dual-container shell. Left circular viewport ring; right empty card for stats & breakthrough. |
-| **`Panel4 SkillsPanelShell.png`** | `Panel4_SkillsPanelShell` | `16:9` | Unfurled parchment scroll mounted on bamboo rods for dynamic skill tree node plotting. |
-| **`Panel5 MapQuestPanelShell.png`** | `Panel5_MapQuestPanelShell` | `16:9` | Dual-container shell. Left quest list channel outline; right open parchment map canvas. |
-| **`Panel6 CombatHUDOverlayShell.png`** | `Panel6_CombatHUDOverlayShell` | `16:9` | Bottom-left vitals track outlines + bottom-center hotbar ribbon channel frame. |
-| **`Panel7 ModularSlotTemplate.png`** | `Panel7_ModularSlotTemplate` | `1:1` | Standalone square slot box asset (dark slate inset + gold border) cloned by Luau scripts. |
-| **`AssetA CloseButton.png`** | `AssetA_CloseButton` | `1:1` | Small `[X]` button for panel top-right corners. |
-| **`AssetB PrimaryActionButton.png`** | `AssetB_PrimaryActionButton` | `16:9` | Tactile green/gold button background (`[BREW PILL]`, `[EQUIP]`, `[CONFIRM]`). |
-| **`AssetC MapPinsKit.png`** | `AssetC_MapPinsKit` | `16:9` | Vector map pins (*Player Arrow*, *Sect Marker*, *Qi Node Pin*, *Quest Pin*). |
+* **`Panels/` (7 Shells):** `Panel1_AlchemyPanelShell` (`84276737641585`), `Panel2_InventoryPanelShell` (`123841032076360`), `Panel3_CharacterPanelShell` (`86012045244236`), `Panel4_SkillsPanelShell` (`107226547729026`), `Panel5_MapQuestPanelShell` (`131488945229260`), `SettingsPanel_SettingsShell` (`127613233097676`), `DialogueFrame_DialogueShell` (`79576725327950`).
+* **`HUD/` (6 Overlays):** `Panel6_CombatHUDOverlayShell` (`110381792485649`), `TopNavigationFrame_TopNavShell` (`122415586898423`), `BossHealthBarShell_BossBarShell` (`134065637826617`), `TargetFrame_TargetFrameShell` (`112564321533982`), `QuestTrackerWidget_QuestTrackerShell` (`131670772422654`), `TutorialHintBanner_TutorialBannerShell` (`92283672177848`).
+* **`Templates/` (3 Controls):** `Panel7_ModularSlotTemplate` (`78377208477701`), `AssetA_CloseButton` (`113605743209527`), `AssetB_PrimaryActionButton` (`139131406784954`).
+* **`Items/` (11 Items & Currencies):** `Item_JadeSpiritBlade` (`102309054006524`), `Item_InitiateRobe` (`110436079253993`), `Item_QiGatheringRing` (`138394758283116`), `Item_SpiritHerb` (`90866060513740`), `Item_DragonBloodFlower` (`122623665914573`), `Item_FrostLotus` (`76826036711416`), `Item_QiGatheringPill` (`87497192233934`), `Item_VitalityPill` (`112990324747062`), `Item_SkillManualScroll` (`78648040440784`), `Currency_SpiritStones` (`79573528943998`), `Currency_SectTokens` (`75450655299271`).
+* **`Skills/` (6 Abilities):** `Skill_QiDash` (`137358656097564`), `Skill_Parry` (`129890118103154`), `Skill_QiSense` (`128617837655590`), `Skill_FlowingWaterSlash` (`95178149840421`), `Skill_ThunderPalmStrike` (`139060977395032`), `Skill_SpiritBlast` (`71547589196383`).
+* **`Icons/` (4 Pins):** `MapPin_PlayerArrow` (`113587700256481`), `MapPin_SectTemple` (`106421270342595`), `MapPin_QiNodeCrystal` (`115576917375343`), `MapPin_QuestExclamation` (`120838027568021`).
 
 ---
 
