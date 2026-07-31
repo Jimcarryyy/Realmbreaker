@@ -1,0 +1,55 @@
+Panels info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+Panel3_CharacterPanelShell,86012045244236,Image,1785498845093,Han_jueee
+SettingsPanel_SettingsShell,127613233097676,Image,1785498845002,Han_jueee
+Panel5_MapQuestPanelShell,131488945229260,Image,1785498845024,Han_jueee
+Panel2_InventoryPanelShell,123841032076360,Image,1785498845026,Han_jueee
+Panel1_AlchemyPanelShell,84276737641585,Image,1785498845111,Han_jueee
+Panel4_SkillsPanelShell,107226547729026,Image,1785498845935,Han_jueee
+DialogueFrame_DialogueShell,79576725327950,Image,1785498845200,Han_jueee
+
+
+HUD's info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+TutorialHintBanner_TutorialBannerShell,92283672177848,Image,1785499113439,Han_jueee
+Panel6_CombatHUDOverlayShell,110381792485649,Image,1785499114281,Han_jueee
+TargetFrame_TargetFrameShell,112564321533982,Image,1785499113831,Han_jueee
+QuestTrackerWidget_QuestTrackerShell,131670772422654,Image,1785499113519,Han_jueee
+TopNavigationFrame_TopNavShell,122415586898423,Image,1785499113840,Han_jueee
+BossHealthBarShell_BossBarShell,134065637826617,Image,1785499113913,Han_jueee
+
+Templates info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+AssetB_PrimaryActionButton,139131406784954,Image,1785499275375,Han_jueee
+AssetA_CloseButton,113605743209527,Image,1785499275234,Han_jueee
+Panel7_ModularSlotTemplate,78377208477701,Image,1785499275923,Han_jueee
+
+Items info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+Item_SkillManualScroll,78648040440784,Image,1785499352026,Han_jueee
+Currency_SectTokens,75450655299271,Image,1785499354050,Han_jueee
+Item_QiGatheringPill,87497192233934,Image,1785499354157,Han_jueee
+Item_SpiritHerb,90866060513740,Image,1785499351990,Han_jueee
+Item_QiGatheringRing,138394758283116,Image,1785499352242,Han_jueee
+Item_JadeSpiritBlade,102309054006524,Image,1785499352451,Han_jueee
+Item_FrostLotus,76826036711416,Image,1785499354700,Han_jueee
+Item_InitiateRobe,110436079253993,Image,1785499354395,Han_jueee
+Currency_SpiritStones,79573528943998,Image,1785499352700,Han_jueee
+Item_DragonBloodFlower,122623665914573,Image,1785499354602,Han_jueee
+Item_VitalityPill,112990324747062,Image,1785499354714,Han_jueee
+
+Skills info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+Skill_QiDash,137358656097564,Image,1785499426798,Han_jueee
+Skill_ThunderPalmStrike,139060977395032,Image,1785499427130,Han_jueee
+Skill_SpiritBlast,71547589196383,Image,1785499428156,Han_jueee
+Skill_QiSense,128617837655590,Image,1785499427385,Han_jueee
+Skill_FlowingWaterSlash,95178149840421,Image,1785499427009,Han_jueee
+Skill_Parry,129890118103154,Image,1785499427882,Han_jueee
+
+Icons info:
+Name,Asset ID,Asset Type,Date Modified,Creator
+MapPin_SectTemple,106421270342595,Image,1785499493647,Han_jueee
+MapPin_PlayerArrow,113587700256481,Image,1785499494079,Han_jueee
+MapPin_QuestExclamation,120838027568021,Image,1785499493621,Han_jueee
+MapPin_QiNodeCrystal,115576917375343,Image,1785499493912,Han_jueee
