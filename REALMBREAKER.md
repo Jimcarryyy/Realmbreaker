@@ -182,3 +182,58 @@ Use the raw links below for direct AI browsing and full context retrieval across
 * **31 Content Expansion:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/31_CONTENT_EXPANSION.md
 * **32 Patch Notes Format:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/32_PATCH_NOTES.md
 * **33 Player Psychology:** https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/docs/Live%20Operations/33_PLAYER_PSYCHOLOGY.md
+
+---
+
+## 📦 9. Source Raw GitHub Links
+
+Base raw source path: `https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/`
+
+### ReplicatedStorage
+- [MadworkMaid.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/MadworkMaid.luau)
+- [MadworkMaid.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/MadworkMaid.meta.json)
+- [MadworkScriptSignal.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/MadworkScriptSignal.luau)
+- [MadworkScriptSignal.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/MadworkScriptSignal.meta.json)
+- [RateLimiter.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/RateLimiter.luau)
+- [RateLimiter.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/RateLimiter.meta.json)
+- [ReplicaController.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/ReplicaController.luau)
+- [ReplicaController.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/ReplicaController.meta.json)
+
+### ReplicatedStorage / Shared / Assets
+- [AssetsConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Assets/AssetsConfig.lua)
+
+### ReplicatedStorage / Shared / Config
+- [ItemsConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/ItemsConfig.lua)
+- [NodesConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/NodesConfig.lua)
+- [RealmsConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/RealmsConfig.lua)
+- [StancesConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/StancesConfig.lua)
+- [ZonesConfig.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ReplicatedStorage/Shared/Config/ZonesConfig.lua)
+
+### ServerScriptService / Server / Boot
+- [ServerLoader.server.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Boot/ServerLoader.server.lua)
+
+### ServerScriptService / Server / Modules
+- [ProfileService.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Modules/ProfileService.luau)
+- [ProfileService.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Modules/ProfileService.meta.json)
+- [ReplicaService.luau](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Modules/ReplicaService.luau)
+- [ReplicaService.meta.json](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Modules/ReplicaService.meta.json)
+
+### ServerScriptService / Server / Services
+- [CombatService.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/CombatService.lua)
+- [CultivationService.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/CultivationService.lua)
+- [SaveService.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/SaveService.lua)
+- [WorldObjectService.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/WorldObjectService.lua)
+- [WorldService.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/ServerScriptService/Server/Services/WorldService.lua)
+
+### StarterPlayer / StarterPlayerScripts / Client / Boot
+- [ClientLoader.client.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Boot/ClientLoader.client.lua)
+
+### StarterPlayer / StarterPlayerScripts / Client / Controllers
+- [CombatController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/CombatController.lua)
+- [CultivationController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/CultivationController.lua)
+- [EffectController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/EffectController.lua)
+- [InventoryController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/InventoryController.lua)
+- [QiSenseController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/QiSenseController.lua)
+- [SkillEffectController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/SkillEffectController.lua)
+- [UIController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua)
+- [WorldController.lua](https://raw.githubusercontent.com/Jimcarryyy/Realmbreaker/main/src/StarterPlayer/StarterPlayerScripts/Client/Controllers/WorldController.lua)
