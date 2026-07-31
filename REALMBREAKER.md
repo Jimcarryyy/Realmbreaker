@@ -142,10 +142,18 @@ Parenting: Character.Head (MaxDistance = 80 studs, AlwaysOnTop = false).
 
 ## 🗺️ 5. Next Development Phases
 
-1. **Inventory Drag-and-Drop & Equipment System:** Dragging consumable pills onto hotbar slots (`[1]`, `[2]`, `[3]`) and equipping gear onto Paperdoll slots.
-2. **Martial Skill Tree Population (`SkillsPanel` - `[K]`):** Technique node progression trees for *Flowing Water Sword Style* and *Thunder-Palm Unarmed*.
-3. **Portable Alchemy Cauldron (`AlchemyPanel`):** Herb insertion, flame temperature slider control, and pill refining yield calculations.
-4. **Contested Qi Nodes & Open-World Arteries:** Claiming spirit springs to grant zone-wide cultivation multipliers (`+3.0x` / `+5.0x`).
+Core Development Phase & Active Task Roadmap
+
+* **Current Development Milestone:** **Milestone 1 (Vertical Slice / Closed Alpha)**.
+
+### ✅ Completed Tasks (Session Summary):
+* [x] **2D Master Visual Asset Library:** All 37 UI asset shells, icons, skills, map pins, and currencies generated, keyed for alpha transparency, auto-cropped, and uploaded to Roblox Studio.
+* [x] **Asset Registry Configuration:** Created `ReplicatedStorage.Shared.Configs.AssetRegistry` populated with all 37 real Roblox Asset IDs.
+* [x] **Level Architecture & World Scaling:** Established Zone 1 (`Azure Cloud Sect` Y=250), Zone 2 (`Miasma Bamboo Forest` Y=0), and Skyward Border Bridge elevation layouts, 0.6-stud stair step rise standard, and `Model:ScaleTo()` Command Bar non-destructive world scaling workflow.
+* [x] **System Architecture Specs:** Updated `docs/Game Design/` documentation for 3D Overhead Player Display (`OverheadBillboardGui`), Dual Target Health Bars (Mobs vs `BossHealthBarShell`), and Tutorial Onboarding (`[Quest: First Steps]`).
+
+### 🎯 NEXT ACTIVE TASK (Immediate Priority for Next Session):
+* [ ] **Client UI Controller (`UIController.lua`):** Implement `StarterPlayer.StarterPlayerScripts.Controllers.UIController.lua` to handle keybind toggles (`[C]` Character, `[B]` Inventory, `[K]` Skills, `[M]` World Map, `[O]` Settings), modal stacking/dimming, tab switching, and hotbar slot binding using `AssetRegistry.lua`.
 
 ---
 
