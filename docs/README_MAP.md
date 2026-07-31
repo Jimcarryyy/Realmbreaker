@@ -15,19 +15,19 @@ This guide provides step-by-step instructions for constructing, assembling, and 
 Before placing models in Roblox Studio, use these 3D game engine concept renders as your spatial layout blueprints:
 
 ### 1️⃣ Zone 1: Azure Cloud Sect (Sect Sanctuary & Safe Hub)
-![Zone 1 - Azure Cloud Sect](./docs/assets/concept_zone1_azure_cloud_sect.png)
+![Zone 1 - Azure Cloud Sect](./assets/concept_zone1_azure_cloud_sect.png)
 > **Sub-Districts:** Upper Grand Pagoda Palace, Sect Plaza with dragon statues, Tiered Waterfall Meditation Garden with jade platforms, and Outdoor Alchemy Courtyard.
 
 ---
 
 ### 2️⃣ Zone 2: Miasma Bamboo Forest (Wilderness & Contested Qi Vein)
-![Zone 2 - Miasma Bamboo Forest](./docs/assets/concept_zone2_miasma_bamboo_forest.png)
+![Zone 2 - Miasma Bamboo Forest](./assets/concept_zone2_miasma_bamboo_forest.png)
 > **Sub-Areas:** Outer Bamboo Grove, Central Mossy Ruins with colossal glowing cyan Qi Artery crystal, Toxic Miasma Ravines, and Cliffside Cave Entrances.
 
 ---
 
 ### 3️⃣ Interconnected World View (Zone 1 & Zone 2 Linked)
-![Interconnected Panoramic World View](./docs/assets/concept_panoramic_world_view.png)
+![Interconnected Panoramic World View](./assets/concept_panoramic_world_view.png)
 > **Spatial Transition:** Zone 1 sits at high altitude (`Y = 250`), descending through the Skyward Border Bridge (`Y = 150`) into Zone 2 (`Y = 0`).
 
 ---
