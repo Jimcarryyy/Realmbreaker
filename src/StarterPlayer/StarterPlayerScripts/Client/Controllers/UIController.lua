@@ -1,239 +1,177 @@
 --!strict
+-- Location: StarterPlayer/StarterPlayerScripts/Client/Controllers/UIController.lua
+-- Purpose: Central client-side UI state controller for Realmbreaker
+
+local ContentProvider = game:GetService("ContentProvider")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
-local ContentProvider = game:GetService("ContentProvider")
 
-local LocalPlayer = Players.LocalPlayer :: Player
+local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui") :: PlayerGui
 
-local Shared = ReplicatedStorage:WaitForChild("Shared")
-local Config = Shared:WaitForChild("Config")
-local RealmsConfig = require(Config:WaitForChild("RealmsConfig") :: ModuleScript)
-
-local Remotes = ReplicatedStorage:WaitForChild("Remotes") :: Folder
-local CultivationUpdatedRemote = Remotes:WaitForChild("CultivationUpdated") :: RemoteEvent
-
-local FONT_PRIMARY = Font.fromEnum(Enum.Font.FredokaOne)
-local COLOR_OBSIDIAN_BG = Color3.fromRGB(18, 22, 26)
+local UIController = {}
+UIController.__index = UIController
 
 local isInitialized = false
-local ActivePanelName: string? = nil
-local PanelMap: { [string]: ImageLabel } = {}
+local currentOpenModal: ImageLabel? = nil
 
-type GaugeReferences = {
-	Container: Frame,
-	Fill: Frame,
-	TextLabel: TextLabel,
+-- References to ScreenGuis
+local mainHUDGui: ScreenGui
+local modalsGui: ScreenGui
+local modalBackdrop: Frame
+
+-- Keybindings map to Modal Panel Names
+local KEY_MAP: { [Enum.KeyCode]: string } = {
+	[Enum.KeyCode.C] = "CharacterPanel",
+	[Enum.KeyCode.B] = "InventoryPanel",
+	[Enum.KeyCode.K] = "SkillsPanel",
+	[Enum.KeyCode.M] = "WorldMapPanel",
+	[Enum.KeyCode.N] = "WorldMapPanel",
+	[Enum.KeyCode.O] = "SettingsPanel",
 }
 
-type HUDReferences = {
-	VitalityCluster: ImageLabel,
-	Health: GaugeReferences?,
-	Posture: GaugeReferences?,
-	Stamina: GaugeReferences?,
-	Qi: GaugeReferences?,
-}
+local TWEEN_INFO = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
-local HudRefs: HUDReferences? = nil
-
-local function getTrackRefs(parent: Instance, trackName: string): GaugeReferences?
-	local container = parent:FindFirstChild(trackName) :: Frame?
-	if not container then return nil end
-
-	local fill = container:FindFirstChild("Fill") :: Frame?
-	local textLabel = container:FindFirstChild("ValueText") :: TextLabel?
-
-	if fill and textLabel then
-		textLabel.FontFace = FONT_PRIMARY
-		return {
-			Container = container,
-			Fill = fill,
-			TextLabel = textLabel,
-		}
-	end
-	return nil
-end
+--------------------------------------------------------------------------------
+-- PRIVATE HELPER FUNCTIONS
+--------------------------------------------------------------------------------
 
 local function isTypingInChat(): boolean
-	local focusedTextBox = UserInputService:GetFocusedTextBox()
-	return focusedTextBox ~= nil
+	return UserInputService:GetFocusedTextBox() ~= nil
 end
 
-local UIController = {}
+local function setBackdropState(visible: boolean)
+	if visible then
+		modalBackdrop.Visible = true
+		TweenService:Create(modalBackdrop, TWEEN_INFO, { BackgroundTransparency = 0.4 }):Play()
+	else
+		local tween = TweenService:Create(modalBackdrop, TWEEN_INFO, { BackgroundTransparency = 1 })
+		tween:Play()
+		tween.Completed:Connect(function()
+			if not currentOpenModal then
+				modalBackdrop.Visible = false
+			end
+		end)
+	end
+end
 
-function UIController.TogglePanel(panelName: string)
-	local targetPanel = PanelMap[panelName]
+--------------------------------------------------------------------------------
+-- PUBLIC CONTROLLER API
+--------------------------------------------------------------------------------
 
-	if not targetPanel then
-		warn("[UI Error] Panel NOT FOUND in PanelMap for:", panelName)
+function UIController.ToggleModal(modalName: string)
+	if not modalsGui then
 		return
 	end
 
-	if ActivePanelName == panelName then
-		UIController.CloseCurrentPanel()
+	local targetModal = modalsGui:FindFirstChild(modalName) :: ImageLabel?
+	if not targetModal then
+		warn("[UIController]: Target modal frame missing ->", modalName)
 		return
 	end
 
-	UIController.CloseCurrentPanel()
-
-	ActivePanelName = panelName
-	targetPanel.Visible = true
-	print("[UI Debug] SUCCESS: Opened panel ->", panelName)
-end
-
-function UIController.CloseCurrentPanel()
-	if not ActivePanelName then return end
-	local currentPanel = PanelMap[ActivePanelName]
-	if currentPanel then
-		currentPanel.Visible = false
-		print("[UI Debug] Closed panel ->", ActivePanelName)
+	-- If clicking the currently open modal, close it
+	if currentOpenModal == targetModal then
+		UIController.CloseAllModals()
+		return
 	end
-	ActivePanelName = nil
+
+	-- If another modal is open, close it first
+	if currentOpenModal and currentOpenModal ~= targetModal then
+		currentOpenModal.Visible = false
+	end
+
+	-- Open target modal
+	currentOpenModal = targetModal
+	targetModal.Visible = true
+	setBackdropState(true)
 end
 
-function UIController.UpdateHealth(currentHp: number, maxHp: number)
-	if not HudRefs or not HudRefs.Health then return end
-
-	local safeMax = math.max(1, maxHp)
-	local percent = math.clamp(currentHp / safeMax, 0, 1)
-
-	HudRefs.Health.TextLabel.Text = string.format("%d / %d HP", math.floor(math.max(0, currentHp)), math.floor(safeMax))
-
-	TweenService:Create(HudRefs.Health.Fill, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-		Size = UDim2.new(percent, 0, 1, 0)
-	}):Play()
+function UIController.CloseAllModals()
+	if currentOpenModal then
+		currentOpenModal.Visible = false
+		currentOpenModal = nil
+	end
+	setBackdropState(false)
 end
 
-function UIController.UpdateCultivationState(state: any)
-	if not HudRefs or not HudRefs.Qi or not state then return end
+function UIController.PreloadAssets()
+	-- List of critical asset IDs to preload into GPU memory
+	local assetList: { string } = {
+		"rbxassetid://84276737641585", -- AlchemyPanel
+		"rbxassetid://123841032076360", -- InventoryPanel
+		"rbxassetid://86012045244236", -- CharacterPanel
+		"rbxassetid://107226547729026", -- SkillsPanel
+		"rbxassetid://131488945229260", -- WorldMapPanel
+		"rbxassetid://127613233097676", -- SettingsPanel
+		"rbxassetid://79576725327950", -- DialogueFrame
+		"rbxassetid://110381792485649", -- CombatHUDOverlay
+		"rbxassetid://122415586898423", -- TopNavigationFrame
+		"rbxassetid://134065637826617", -- BossHealthBar
+		"rbxassetid://112564321533982", -- TargetFrame
+		"rbxassetid://131670772422654", -- QuestTrackerWidget
+		"rbxassetid://92283672177848", -- TutorialHintBanner
+		"rbxassetid://137701990579121", -- ModularSlot
+		"rbxassetid://113117552011909", -- CloseButton
+		"rbxassetid://90057641384840", -- PrimaryActionButton
+	}
 
-	local currentQi = state.CurrentQi or 0
-	local maxQi = math.max(1, state.MaxQi or 100)
-	local percent = math.clamp(currentQi / maxQi, 0, 1)
-
-	HudRefs.Qi.TextLabel.Text = string.format("%d / %d Spirit Qi", math.floor(currentQi), math.floor(maxQi))
-
-	TweenService:Create(HudRefs.Qi.Fill, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-		Size = UDim2.new(percent, 0, 1, 0)
-	}):Play()
-end
-
-function UIController.SetupKeybindings()
-	UserInputService.InputBegan:Connect(function(input, _gameProcessed)
-		if isTypingInChat() then return end
-
-		-- B or I Key for Inventory
-		if input.KeyCode == Enum.KeyCode.I or input.KeyCode == Enum.KeyCode.B then
-			print("[UI Debug] Inventory Key Pressed (I/B)!")
-			UIController.TogglePanel("Inventory")
-		elseif input.KeyCode == Enum.KeyCode.C then
-			print("[UI Debug] 'C' Key Pressed!")
-			UIController.TogglePanel("Character")
-		elseif input.KeyCode == Enum.KeyCode.K then
-			print("[UI Debug] 'K' Key Pressed!")
-			UIController.TogglePanel("Skills")
-		elseif input.KeyCode == Enum.KeyCode.N then
-			print("[UI Debug] 'N' Key Pressed!")
-			UIController.TogglePanel("WorldMap")
-		elseif input.KeyCode == Enum.KeyCode.O then
-			print("[UI Debug] 'O' Key Pressed!")
-			UIController.TogglePanel("Settings")
-		elseif input.KeyCode == Enum.KeyCode.Escape then
-			UIController.CloseCurrentPanel()
-		end
+	task.spawn(function()
+		local startTime = os.clock()
+		ContentProvider:PreloadAsync(assetList)
+		local elapsed = os.clock() - startTime
+		print(string.format("[UIController]: Preloaded %d UI assets in %.2f seconds.", #assetList, elapsed))
 	end)
 end
 
 function UIController.Init()
-	if isInitialized then return end
+	if isInitialized then
+		return
+	end
 	isInitialized = true
 
-	local combatGui = PlayerGui:WaitForChild("CombatHUDGui", 5) :: ScreenGui?
-	local mainGui   = PlayerGui:WaitForChild("MainScreenGui", 5) :: ScreenGui?
+	-- Acquire ScreenGuis from PlayerGui
+	mainHUDGui = PlayerGui:WaitForChild("MainHUDGui") :: ScreenGui
+	modalsGui = PlayerGui:WaitForChild("ModalsGui") :: ScreenGui
+	modalBackdrop = modalsGui:WaitForChild("ModalBackdrop") :: Frame
 
-	if combatGui then
-		local vitality = combatGui:FindFirstChild("VitalityCluster") :: ImageLabel?
-		if vitality then
-			HudRefs = {
-				VitalityCluster = vitality,
-				Health  = getTrackRefs(vitality, "HealthTrack"),
-				Posture = getTrackRefs(vitality, "PostureTrack"),
-				Stamina = getTrackRefs(vitality, "StaminaTrack"),
-				Qi      = getTrackRefs(vitality, "QiTrack"),
-			}
-		end
-	end
+	-- Preload asset textures to prevent white loading flashes
+	UIController.PreloadAssets()
 
-	if mainGui then
-		-- Register panels with Fuzzy Fallback Search
-		local function registerPanel(keyName: string, defaultName: string)
-			local found = mainGui:FindFirstChild(defaultName) :: ImageLabel?
-			
-			-- Fuzzy search if exact name wasn't found
-			if not found then
-				for _, child in ipairs(mainGui:GetChildren()) do
-					if child:IsA("ImageLabel") and string.find(string.lower(child.Name), string.lower(keyName)) then
-						found = child
-						print(string.format("[UI Auto-Finder] Matched key '%s' to Explorer object '%s'", keyName, child.Name))
-						break
-					end
-				end
-			end
-
-			if found then
-				PanelMap[keyName] = found
-			else
-				warn(string.format("[UI Warning] Could NOT find panel for '%s' in MainScreenGui!", defaultName))
+	-- Automatically bind CloseButtons inside all modal frames
+	for _, child in ipairs(modalsGui:GetChildren()) do
+		if child:IsA("ImageLabel") then
+			local closeButton = child:FindFirstChild("CloseButton") :: ImageButton?
+			if closeButton then
+				closeButton.MouseButton1Click:Connect(function()
+					UIController.CloseAllModals()
+				end)
 			end
 		end
+	end
 
-		registerPanel("Character", "CharacterPanel")
-		registerPanel("Inventory", "InventoryPanel")
-		registerPanel("Skills",    "SkillsPanel")
-		registerPanel("Alchemy",   "AlchemyPanel")
-		registerPanel("WorldMap",  "WorldMapPanel")
-		registerPanel("Settings",  "SettingsPanel")
+	-- Connect Global Input Handling
+	UserInputService.InputBegan:Connect(function(input: InputObject, gameProcessed: boolean)
+		if gameProcessed or isTypingInChat() then
+			return
+		end
 
-		-- Preload Textures
-		local instancesToPreload: { Instance } = {}
-		for panelKey, panelImage in pairs(PanelMap) do
-			if panelImage then
-				panelImage.BackgroundTransparency = 1
-				panelImage.BackgroundColor3 = COLOR_OBSIDIAN_BG
-				table.insert(instancesToPreload, panelImage)
+		if input.KeyCode == Enum.KeyCode.Escape then
+			if currentOpenModal then
+				UIController.CloseAllModals()
 			end
+			return
 		end
 
-		task.spawn(function()
-			ContentProvider:PreloadAsync(instancesToPreload)
-		end)
-	end
-
-	local function bindCharacter(character: Model)
-		local humanoid = character:WaitForChild("Humanoid", 5) :: Humanoid?
-		if humanoid then
-			humanoid.HealthChanged:Connect(function()
-				UIController.UpdateHealth(humanoid.Health, humanoid.MaxHealth)
-			end)
-			UIController.UpdateHealth(humanoid.Health, humanoid.MaxHealth)
+		local mappedModal = KEY_MAP[input.KeyCode]
+		if mappedModal then
+			UIController.ToggleModal(mappedModal)
 		end
-	end
-
-	LocalPlayer.CharacterAdded:Connect(bindCharacter)
-	if LocalPlayer.Character then
-		bindCharacter(LocalPlayer.Character)
-	end
-
-	CultivationUpdatedRemote.OnClientEvent:Connect(function(state: any)
-		UIController.UpdateCultivationState(state)
 	end)
 
-	UIController.SetupKeybindings()
-	print(">>> [REALMBREAKER] UI CONTROLLER READY (INVENTORY B/I DUAL BIND ACTIVE) <<<")
+	print("[UIController]: Initialized successfully.")
 end
-
-UIController.Init()
 
 return UIController
