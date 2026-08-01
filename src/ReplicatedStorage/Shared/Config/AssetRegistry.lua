@@ -21,9 +21,9 @@ AssetRegistry.HUD = {
 }
 
 AssetRegistry.Templates = {
-	ModularSlot = "rbxassetid://78377208477701",
-	CloseButton = "rbxassetid://113605743209527",
-	PrimaryActionButton = "rbxassetid://139131406784954",
+	ModularSlot = "rbxassetid://137701990579121",
+	CloseButton = "rbxassetid://113117552011909",
+	PrimaryActionButton = "rbxassetid://90057641384840",
 }
 
 AssetRegistry.Items = {
